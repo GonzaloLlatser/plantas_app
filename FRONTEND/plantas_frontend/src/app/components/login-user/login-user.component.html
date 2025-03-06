@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <!-- Formulario-->
+  <div class="col-md-6">
+    <form [formGroup]="formUserLogin" (ngSubmit)="login()">
+      <!-- Campo Email-->
+      <div class="form-floating">
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="email">
+        <label for="email">Email</label>
+        <!--Validación-->
+        @if (email.invalid && (email.dirty || email.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (email.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¡Debes indicar un email!
+            </div>
+          }
+          <!-- Alerta para 'maxLength' -->
+          @if (email.errors?.['maxlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡No superes los 50 caracteres!
+            </div>
+          }
+          <!-- Alerta para 'minLength' -->
+          @if (email.errors?.['minlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡Escribe tu correo completo!
+            </div>
+          }
+          <!-- Alerta para '@correo' -->
+          @if (email.errors?.['email']) {
+            <div class="alert alert-warning" role="alert">
+              ¡¿Estas seguro? Eso no parece un correo!
+            </div>
+          }
+          <!-- Alerta para 'notOnlyWhiteSpace' -->
+          @if (email.errors?.['notOnlyWhiteSpace']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Estás seguro de que tu email tiene solo espacios en blanco?
+            </div>
+          }
+        }
+      </div>
+      <!-- Campo Password-->
+      <div class="form-floating mt-3">
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="password">
+        <label for="password">Password</label>
+        @if (password.invalid && (password.dirty || password.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (password.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¡Debes indicar una contraseña!
+            </div>
+          }   <!-- Alerta para 'minLength' -->
+          @if (password.errors?.['minlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡La contraseña debe tener al menos 8 caracteres!
+            </div>
+          }
+          <!-- Alerta para 'maxLength' -->
+          @if (password.errors?.['maxlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡No superes los 20 caracteres!
+            </div>
+          }
+          <!-- Alerta para 'notOnlyWhiteSpace' -->
+          @if (password.errors?.['notOnlyWhiteSpace']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Estás seguro de que tu password tiene solo espacios en blanco?
+            </div>
+          }
+        }
+      </div>
+      <!-- Botón de Enviar -->
+      <div class="btn-group mt-3">
+        <button type="submit" class="btn btn-m btn-success">Iniciar sesión</button>
+      </div>
+    </form>
+    <!-- Fin del Formulario -->
+  </div>
+</div>
