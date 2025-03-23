@@ -1,9 +1,47 @@
 <div class="container mt-5">
   <!-- Formulario-->
   <div class="col-md-6">
-    <form [formGroup]="formUserLogin" (ngSubmit)="login()">
-      <!-- Campo Email-->
+    <form [formGroup]="formUserLogin" (ngSubmit)="crearModificar()">
+      <!-- Campo Nombre-->
       <div class="form-floating">
+        <input type="nombre" formControlName="nombre" class="form-control" id="nombre" placeholder="nombre">
+        <label for="nombre">Nombre</label>
+        <!--Validación-->
+        @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (nombre.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¡Debes indicar un nombre!
+            </div>
+          }
+          <!-- Alerta para 'maxLength' -->
+          @if (nombre.errors?.['maxlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡No superes los 50 caracteres!
+            </div>
+          }
+          <!-- Alerta para 'minLength' -->
+          @if (nombre.errors?.['minlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡Escribe tu nombre completo!
+            </div>
+          }
+          <!-- Alerta para '@nombre' -->
+          @if (nombre.errors?.['nombre']) {
+            <div class="alert alert-warning" role="alert">
+              ¡¿Estas seguro? Eso no parece un nombre!
+            </div>
+          }
+          <!-- Alerta para 'notOnlyWhiteSpace' -->
+          @if (nombre.errors?.['notOnlyWhiteSpace']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Estás seguro de que tu nombre tiene solo espacios en blanco?
+            </div>
+          }
+        }
+      </div>
+      <!-- Campo Email-->
+      <div class="form-floating mt-3">
         <input type="email" formControlName="email" class="form-control" id="email" placeholder="email">
         <label for="email">Email</label>
         <!--Validación-->
@@ -72,12 +110,13 @@
       </div>
       <!-- Botón de Enviar -->
       <div class="btn-group mt-3">
-        <button type="submit" class="btn btn-m btn-success">Iniciar sesión</button>
+        <button type="submit" class="btn btn-m btn-success">Crear cuenta</button>
       </div>
     </form>
     <!-- Fin del Formulario -->
   </div>
   <div class="container mt-5">
-    <button type="button" class="btn btn-outline-primary" routerLink="/nuevoEditarUsuario">¿Nuevo en la app? Crea tu cuenta aquí</button>
+    <button type="button" class="btn btn-outline-primary" routerLink="/loginUser">¿Ya estas registrado? Inicia sesión aquí.
+    </button>
   </div>
 </div>

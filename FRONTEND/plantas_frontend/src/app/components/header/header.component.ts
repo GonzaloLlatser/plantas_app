@@ -13,5 +13,6 @@ export class HeaderComponent {
   accesos = [
     {nombre: 'Inicio', url: 'inicio'},
     {nombre: 'Login', url: 'loginUser'},
+    {nombre: '¿Nuevo en la app?', url: 'nuevoEditarUsuario'},
   ]
 }

@@ -1,1 +1,214 @@
-<p>inicio works!</p>
+<div class="container row ">
+  <!-- Botón de Modal -->
+  <div class="btn-group mt-3 col-md-2">
+    <button type="submit" class="btn btn-m btn-warning" data-bs-toggle="modal" data-bs-target="#actualizarDatosModal">
+      Editar Cuenta
+    </button>
+  </div>
+</div>
+<div class="container row">
+  <!-- Botón de Eliminar -->
+  <div class="btn-group mt-3 col-md-2">
+    <button type="submit" class="btn btn-m btn-danger" (click)="eliminarUsuario(id)">Eliminar Cuenta</button>
+  </div>
+</div>
+
+@defer (when plantas) {
+  <div class="row d-flex justify-content-center mt-5">
+    @for (planta of plantas; track $index) {
+      <div class="col col-md-3 mb-4">
+        <div class="card shadow-lg border-0 rounded">
+          <div class="card-header text-center bg-success text-white rounded-top">
+            <h5 class="card-title">{{ planta.nombre }}</h5>
+          </div>
+          <div class="text-center mt-2">
+            <img
+              [src]="'/images/img_default.png'"
+              [alt]="'Sin nombre'"
+              class="card-img-bottom w-50">
+          </div>
+
+          <div class="card-body">
+            <p class="card-text"><strong>Tipo:</strong> {{ planta.tipoPlanta }}</p>
+            <p class="card-text"><strong>Ubicación:</strong> {{ planta.ubicacion }}</p>
+            <p class="card-text"><strong>Notas:</strong> {{ planta.notas }}</p>
+          </div>
+          <div class="card-footer text-muted text-center bg-light border-top">
+            <h4 class="text-success">¡Novedades!</h4>
+            <p class="text-success">{{ planta.proximoRiego }}</p>
+            <a [routerLink]="['/plantaDetalle', planta.id]" class="btn btn-outline-success btn-sm">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+@if (plantas.length<1) {
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col col-md-3 mb-4">
+      <div class="card shadow-lg border-0 rounded">
+        <div class="card-header text-center bg-success text-white rounded-top">
+          <h5 class="card-title"></h5>
+        </div>
+        <div class="text-center mt-2">
+          <img
+            [src]="'/images/img_default.png'"
+            [alt]="'Sin nombre'"
+            class="card-img-bottom w-50">
+        </div>
+
+        <div class="card-body">
+          <p class="card-text"><strong>Tipo:</strong></p>
+          <p class="card-text"><strong>Ubicación:</strong></p>
+          <p class="card-text"><strong>Notas:</strong></p>
+        </div>
+        <div class="card-footer text-muted text-center bg-light border-top">
+          <h4 class="text-success">¡Novedades!</h4>
+          <p class="text-success"></p>
+          <a [routerLink]="" class="btn btn-outline-success btn-sm">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+
+<!-- Modal -->
+<div class="modal fade" [attr.id]="'actualizarDatosModal'"
+     tabindex="-1"
+     aria-labelledby="deleteModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="actualizarDatosModalLabel">¡Aquí es donde actualizas tus datos!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <!-- Formulario-->
+          <div class="col-md-6">
+            <form [formGroup]="formUserEdit" (ngSubmit)="actualizarCuenta()">
+              <!-- Campo Nombre-->
+              <div class="form-floating">
+                <input type="nombre" formControlName="nombre" class="form-control" id="nombre" placeholder="nombre">
+                <label for="nombre">Nombre</label>
+                <!--Validación-->
+                @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
+                  <!-- Alerta para 'required' -->
+                  @if (nombre.errors?.['required']) {
+                    <div class="alert alert-danger" role="alert">
+                      ¡Debes indicar un nombre!
+                    </div>
+                  }
+                  <!-- Alerta para 'maxLength' -->
+                  @if (nombre.errors?.['maxlength']) {
+                    <div class="alert alert-warning" role="alert">
+                      ¡No superes los 50 caracteres!
+                    </div>
+                  }
+                  <!-- Alerta para 'minLength' -->
+                  @if (nombre.errors?.['minlength']) {
+                    <div class="alert alert-warning" role="alert">
+                      ¡Escribe tu nombre completo!
+                    </div>
+                  }
+                  <!-- Alerta para '@nombre' -->
+                  @if (nombre.errors?.['nombre']) {
+                    <div class="alert alert-warning" role="alert">
+                      ¡¿Estas seguro? Eso no parece un nombre!
+                    </div>
+                  }
+                  <!-- Alerta para 'notOnlyWhiteSpace' -->
+                  @if (nombre.errors?.['notOnlyWhiteSpace']) {
+                    <div class="alert alert-danger" role="alert">
+                      ¿Estás seguro de que tu nombre tiene solo espacios en blanco?
+                    </div>
+                  }
+                }
+              </div>
+              <!-- Campo Email-->
+              <div class="form-floating mt-3">
+                <input type="email" formControlName="email" class="form-control" id="email" placeholder="email">
+                <label for="email">Email</label>
+                <!--Validación-->
+                @if (email.invalid && (email.dirty || email.touched)) {
+                  <!-- Alerta para 'required' -->
+                  @if (email.errors?.['required']) {
+                    <div class="alert alert-danger" role="alert">
+                      ¡Debes indicar un email!
+                    </div>
+                  }
+                  <!-- Alerta para 'maxLength' -->
+                  @if (email.errors?.['maxlength']) {
+                    <div class="alert alert-warning" role="alert">
+                      ¡No superes los 50 caracteres!
+                    </div>
+                  }
+                  <!-- Alerta para 'minLength' -->
+                  @if (email.errors?.['minlength']) {
+                    <div class="alert alert-warning" role="alert">
+                      ¡Escribe tu correo completo!
+                    </div>
+                  }
+                  <!-- Alerta para '@correo' -->
+                  @if (email.errors?.['email']) {
+                    <div class="alert alert-warning" role="alert">
+                      ¡¿Estas seguro? Eso no parece un correo!
+                    </div>
+                  }
+                  <!-- Alerta para 'notOnlyWhiteSpace' -->
+                  @if (email.errors?.['notOnlyWhiteSpace']) {
+                    <div class="alert alert-danger" role="alert">
+                      ¿Estás seguro de que tu email tiene solo espacios en blanco?
+                    </div>
+                  }
+                }
+              </div>
+              <!-- Campo Password-->
+              <div class="form-floating mt-3">
+                <input type="password" formControlName="password" class="form-control" id="password"
+                       placeholder="password">
+                <label for="password">Password</label>
+                @if (password.invalid && (password.dirty || password.touched)) {
+                  <!-- Alerta para 'required' -->
+                  @if (password.errors?.['required']) {
+                    <div class="alert alert-danger" role="alert">
+                      ¡Debes indicar una contraseña!
+                    </div>
+                  }   <!-- Alerta para 'minLength' -->
+                  @if (password.errors?.['minlength']) {
+                    <div class="alert alert-warning" role="alert">
+                      ¡La contraseña debe tener al menos 8 caracteres!
+                    </div>
+                  }
+                  <!-- Alerta para 'maxLength' -->
+                  @if (password.errors?.['maxlength']) {
+                    <div class="alert alert-warning" role="alert">
+                      ¡No superes los 20 caracteres!
+                    </div>
+                  }
+                  <!-- Alerta para 'notOnlyWhiteSpace' -->
+                  @if (password.errors?.['notOnlyWhiteSpace']) {
+                    <div class="alert alert-danger" role="alert">
+                      ¿Estás seguro de que tu password tiene solo espacios en blanco?
+                    </div>
+                  }
+                }
+              </div>
+              <!-- Botón de Guardar -->
+              <div class="btn-group mt-3">
+                <button type="submit" class="btn btn-m btn-success" data-bs-dismiss="modal">Guardar</button>
+              </div>
+            </form>
+            <!-- Fin del Formulario -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Finaliza Modal-->
