@@ -12,6 +12,12 @@
     <button type="submit" class="btn btn-m btn-danger" (click)="eliminarUsuario(id)">Eliminar Cuenta</button>
   </div>
 </div>
+<div class="container row">
+  <!-- Botón de Cerrar sesión -->
+  <div class="btn-group mt-3 col-md-2">
+    <button type="submit" class="btn btn-m btn-info">Cerrar sesión</button>
+  </div>
+</div>
 
 @defer (when plantas) {
   <div class="row d-flex justify-content-center mt-5">
@@ -43,33 +49,26 @@
     }
   </div>
 }
-@if (plantas.length<1) {
-  <div class="row d-flex justify-content-center mt-5">
-    <div class="col col-md-3 mb-4">
-      <div class="card shadow-lg border-0 rounded">
-        <div class="card-header text-center bg-success text-white rounded-top">
-          <h5 class="card-title"></h5>
-        </div>
-        <div class="text-center mt-2">
-          <img
-            [src]="'/images/img_default.png'"
-            [alt]="'Sin nombre'"
-            class="card-img-bottom w-50">
-        </div>
+@if (plantas.length < 1) {
+  <div class="container">
+    <div>
+      <h3> AUN NO TIENES PLANTAS- AGREAG LAS PLANTAS QUE TIENES A CARGO!</h3>
+    </div>
 
-        <div class="card-body">
-          <p class="card-text"><strong>Tipo:</strong></p>
-          <p class="card-text"><strong>Ubicación:</strong></p>
-          <p class="card-text"><strong>Notas:</strong></p>
-        </div>
-        <div class="card-footer text-muted text-center bg-light border-top">
-          <h4 class="text-success">¡Novedades!</h4>
-          <p class="text-success"></p>
-          <a [routerLink]="" class="btn btn-outline-success btn-sm">Ver Detalles</a>
-        </div>
-      </div>
+    <div class="text-center mt-2">
+      <img
+        [src]="'/images/img_default.png'"
+        [alt]="'Sin nombre'"
+        class="card-img-bottom w-25">
+    </div>
+
+    <div class="text-center mt-2">
+      <p class="text-success"></p>
+      <a [routerLink]="'/plantaNueva'" class="btn btn-outline-success btn-sm">AGREGAR NUEVA PLANTA</a>
     </div>
   </div>
+
+
 }
 
 

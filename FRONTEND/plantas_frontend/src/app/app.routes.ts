@@ -26,6 +26,11 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'plantaNueva',
+    component: NewEditPlantaComponent,
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: 'loginUser',
     pathMatch: 'full'

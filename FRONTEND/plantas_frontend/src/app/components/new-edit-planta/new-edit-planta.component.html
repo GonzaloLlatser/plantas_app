@@ -1,1 +1,89 @@
-<p>new-edit-planta works!</p>
+fechaAdquisicion: Date
+ultimoRiego: Date
+proximoRiego: Date
+fechaPoda: Date
+ubicacion: string
+tipoPlanta: string
+notas: string
+
+<h1>PAGINA DE ACTUALIZAR Y CREAR PLANTA NUEVA</h1>
+<div class="container mt-5">
+  <!-- Formulario-->
+  <div class="col-md-6">
+    <form [formGroup]="formPlanta" (ngSubmit)="crearModificar()">
+      <!-- Campo Nombre-->
+      <div class="form-floating">
+        <input type="text" formControlName="nombre" class="form-control" id="nombre" placeholder="nombre">
+        <label for="nombre">Nombre</label>
+        <!--Validación-->
+        @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (nombre.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¡Debes indicar un nombre!
+            </div>
+          }
+          <!-- Alerta para 'maxLength' -->
+          @if (nombre.errors?.['maxlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡No superes los 50 caracteres!
+            </div>
+          }
+          <!-- Alerta para 'minLength' -->
+          @if (nombre.errors?.['minlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡Escribe tu nombre completo!
+            </div>
+          }
+          <!-- Alerta para '@nombre' -->
+          @if (nombre.errors?.['nombre']) {
+            <div class="alert alert-warning" role="alert">
+              ¡¿Estas seguro? Eso no parece un nombre!
+            </div>
+          }
+          <!-- Alerta para 'notOnlyWhiteSpace' -->
+          @if (nombre.errors?.['notOnlyWhiteSpace']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Estás seguro de que tu nombre tiene solo espacios en blanco?
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Campo fechaAdquisicion-->
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          class="form-control"
+          id="fechaAdquisicion"
+          placeholder="Fecha de adquisición"
+          ngbDatepicker
+          formControlName="fechaAdquisicion"
+          #d="ngbDatepicker"
+          (click)="d.toggle()">
+        <label for="fechaAdquisicion">Fecha de adquisición</label>
+
+
+        <!-- Validación-->
+        @if (fechaAdquisicionFormulario.invalid && (fechaAdquisicionFormulario.dirty || fechaAdquisicionFormulario.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (fechaAdquisicionFormulario.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¡Debes indicar una fecha!
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Botón de Enviar -->
+      <div class="btn-group mt-3">
+        <button type="submit" class="btn btn-m btn-success">Guardar</button>
+      </div>
+    </form>
+    <!-- Fin del Formulario -->
+  </div>
+  <div class="container mt-5">
+    <button type="button" class="btn btn-outline-primary" routerLink="">¿Luego? VOLVER
+    </button>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import {UserLoginInterface} from '../common/user-login-interface';
 import {Observable} from 'rxjs';
 import {environment} from '../environment/environment';
 import {PlantasInterface} from '../common/plantas-interface';
+import {userNewInterface} from '../common/user-new-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class PlantasService {
     return this.http.get<PlantasInterface[]>(environment.url_base + 'api/plantas/usuario/' + id);
   }
 
-  constructor() {
+  crearNuevaPlanta(planta: PlantasInterface): Observable<any> {
+    return this.http.post<any>(environment.url_base + 'api/plantas/new', planta);
   }
 }
