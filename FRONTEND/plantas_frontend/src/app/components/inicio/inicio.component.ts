@@ -6,14 +6,12 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {FormValidators} from '../../validators/FormValidators';
 import {PlantasService} from '../../services/plantas.service';
 import {PlantasInterface} from '../../common/plantas-interface';
-import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-inicio',
   imports: [
     ReactiveFormsModule,
     RouterLink,
-    DatePipe
   ],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
@@ -50,6 +48,7 @@ export class InicioComponent implements OnInit {
       FormValidators.notOnlyWhiteSpace
     ]],
   });
+  protected plantasCargadas: boolean = false;
 
   get nombre(): any {
     return this.formUserEdit.get('nombre');
@@ -126,18 +125,14 @@ export class InicioComponent implements OnInit {
   private plantasDelUsuario() {
     this.plantasService.todasLasPlantasUsuario(this.id).subscribe({
       next: data => {
-        this.plantas= data;
+        this.plantas = data;
         console.log(this.plantas);
+        this.plantasCargadas = true;
       },
       error: err => console.log(err),
       complete: () => {
         console.log("Plantas obtenidas");
       }
     })
-
-  }
-
-  eliminarPlanta(id: number) {
-    
   }
 }

@@ -1,10 +1,3 @@
-fechaAdquisicion: Date
-ultimoRiego: Date
-proximoRiego: Date
-fechaPoda: Date
-ubicacion: string
-tipoPlanta: string
-notas: string
 
 <h1>PAGINA DE ACTUALIZAR Y CREAR PLANTA NUEVA</h1>
 <div class="container mt-5">
@@ -12,39 +5,46 @@ notas: string
   <div class="col-md-6">
     <form [formGroup]="formPlanta" (ngSubmit)="crearModificar()">
       <!-- Campo Nombre-->
-      <div class="form-floating">
-        <input type="text" formControlName="nombre" class="form-control" id="nombre" placeholder="nombre">
-        <label for="nombre">Nombre</label>
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          formControlName="nombre"
+          class="form-control"
+          id="nombre"
+          placeholder="Nombre de tu planta">
+        <label for="nombre">🌿 Nombre: Dale un apodo con personalidad</label>
+
+
         <!--Validación-->
         @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
           <!-- Alerta para 'required' -->
           @if (nombre.errors?.['required']) {
             <div class="alert alert-danger" role="alert">
-              ¡Debes indicar un nombre!
+              ¡Ey! No te olvides de ponerle un nombre a tu planta
             </div>
           }
           <!-- Alerta para 'maxLength' -->
           @if (nombre.errors?.['maxlength']) {
             <div class="alert alert-warning" role="alert">
-              ¡No superes los 50 caracteres!
+              Ups... ¡Ese nombre es muy largo! ¿Podés resumirlo un poquito?
             </div>
           }
           <!-- Alerta para 'minLength' -->
           @if (nombre.errors?.['minlength']) {
             <div class="alert alert-warning" role="alert">
-              ¡Escribe tu nombre completo!
+              ¿Solo eso? Dale un nombre un poquito más completo.
             </div>
           }
           <!-- Alerta para '@nombre' -->
           @if (nombre.errors?.['nombre']) {
             <div class="alert alert-warning" role="alert">
-              ¡¿Estas seguro? Eso no parece un nombre!
+              Hmm... ese nombre no parece válido. ¿Querés revisarlo?
             </div>
           }
           <!-- Alerta para 'notOnlyWhiteSpace' -->
           @if (nombre.errors?.['notOnlyWhiteSpace']) {
             <div class="alert alert-danger" role="alert">
-              ¿Estás seguro de que tu nombre tiene solo espacios en blanco?
+              ¡Cuidado! No podés dejar solo espacios en blanco.
             </div>
           }
         }
@@ -56,20 +56,224 @@ notas: string
           type="text"
           class="form-control"
           id="fechaAdquisicion"
-          placeholder="Fecha de adquisición"
+          placeholder="Fecha en que llegó a tu vida"
           ngbDatepicker
           formControlName="fechaAdquisicion"
-          #d="ngbDatepicker"
-          (click)="d.toggle()">
-        <label for="fechaAdquisicion">Fecha de adquisición</label>
-
+          #dpAdquisicion="ngbDatepicker"
+          (click)="dpAdquisicion.toggle()">
+        <label for="fechaAdquisicion">📅 Fecha de adopción: ¿Cuándo te conquistó?</label>
 
         <!-- Validación-->
         @if (fechaAdquisicionFormulario.invalid && (fechaAdquisicionFormulario.dirty || fechaAdquisicionFormulario.touched)) {
           <!-- Alerta para 'required' -->
           @if (fechaAdquisicionFormulario.errors?.['required']) {
             <div class="alert alert-danger" role="alert">
-              ¡Debes indicar una fecha!
+              ¿Cuándo adoptaste esta planta? No nos dejes con la duda.
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Campo fechaUltimoRiego-->
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          class="form-control"
+          id="fechaUltimoRiego"
+          placeholder="Última vez que la regaste"
+          ngbDatepicker
+          formControlName="fechaUltimoRiego"
+          #dpUltimoRiego="ngbDatepicker"
+          (click)="dpUltimoRiego.toggle()">
+        <label for="fechaUltimoRiego">💧 Último riego: ¡Ya es hora de hidratarla o ya fue?</label>
+
+        <!-- Validación-->
+        @if (fechaUltimoRiego.invalid && (fechaUltimoRiego.dirty || fechaUltimoRiego.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (fechaUltimoRiego.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Cuándo fue la última vez que la regaste? ¡A tu plantita le importa!
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Campo fechaPoda-->
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          class="form-control"
+          id="fechaPoda"
+          placeholder="Última poda"
+          ngbDatepicker
+          formControlName="fechaPoda"
+          #dpPoda="ngbDatepicker"
+          (click)="dpPoda.toggle()">
+        <label for="fechaPoda">✂️ Última poda: ¿Ya pasó por la peluquería?</label>
+
+        <!-- Validación-->
+        @if (fechaPoda.invalid && (fechaPoda.dirty || fechaPoda.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (fechaPoda.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Cuándo fue su último corte de look? ¡Las plantas también van a la pelu!
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Campo fechaProximoRiego-->
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          class="form-control"
+          id="fechaProximoRiego"
+          placeholder="Próximo riego"
+          ngbDatepicker
+          formControlName="fechaProximoRiego"
+          #dpProximoRiego="ngbDatepicker"
+          (click)="dpProximoRiego.toggle()">
+        <label for="fechaProximoRiego">🗓️ Próximo riego: Agendalo para que no se te pase</label>
+
+        <!-- Validación-->
+        @if (fechaProximoRiego.invalid && (fechaProximoRiego.dirty || fechaProximoRiego.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (fechaProximoRiego.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Cuándo pensás regarla de nuevo? Así no se te seca.
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Campo ubicacion-->
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          formControlName="ubicacion"
+          class="form-control"
+          id="ubicacion"
+          placeholder="Ej: Balcón, Cocina, Estudio...">
+        <label for="ubicacion">📍 Ubicación: ¿Dónde vive tu plantita?</label>
+
+        <!--Validación-->
+        @if (ubicacion.invalid && (ubicacion.dirty || ubicacion.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (ubicacion.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Dónde está tu planta? No podemos dejarla perdida.
+            </div>
+          }
+          <!-- Alerta para 'maxLength' -->
+          @if (ubicacion.errors?.['maxlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡Esa ubicación es larguísima! ¿Podés acortarla?
+            </div>
+          }
+          <!-- Alerta para 'minLength' -->
+          @if (ubicacion.errors?.['minlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¿Tan corta? Prueba escribirla poco más.
+            </div>
+          }
+          <!-- Alerta para '@ubicacion' -->
+          @if (ubicacion.errors?.['ubicacion']) {
+            <div class="alert alert-warning" role="alert">
+              Hmm... esa ubicación no se entiende muy bien.
+            </div>
+          }
+          <!-- Alerta para 'notOnlyWhiteSpace' -->
+          @if (ubicacion.errors?.['notOnlyWhiteSpace']) {
+            <div class="alert alert-danger" role="alert">
+              ¡Cuidado! Eso no es una ubicación válida.
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Campo tipoPlanta-->
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          formControlName="tipoPlanta"
+          class="form-control"
+          id="tipoPlanta"
+          placeholder="Ej: Cactus, Suculenta, Ficus...">
+        <label for="tipoPlanta">🌵 Tipo: ¿De qué especie es tu compañera verde?</label>
+        <!--Validación-->
+        @if (tipoPlanta.invalid && (tipoPlanta.dirty || tipoPlanta.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (tipoPlanta.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Qué tipo de planta es? ¡Cuéntanos!
+            </div>
+          }
+          <!-- Alerta para 'maxLength' -->
+          @if (tipoPlanta.errors?.['maxlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡Wow! Ese nombre de planta es demasiado largo.
+            </div>
+          }
+          <!-- Alerta para 'minLength' -->
+          @if (tipoPlanta.errors?.['minlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¿Puedes ser un poco más descriptivo?
+            </div>
+          }
+          <!-- Alerta para '@nombre' -->
+          @if (tipoPlanta.errors?.['tipoPlanta']) {
+            <div class="alert alert-warning" role="alert">
+              No estamos seguros a que planta te refieres. ¿Lo revisás?
+            </div>
+          }
+          <!-- Alerta para 'notOnlyWhiteSpace' -->
+          @if (tipoPlanta.errors?.['notOnlyWhiteSpace']) {
+            <div class="alert alert-danger" role="alert">
+              Parece que solo pusiste espacios. Escribí algo real.
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Campo notas-->
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          formControlName="notas"
+          class="form-control"
+          id="notas"
+          placeholder="Algo que quieras recordar">
+        <label for="notas">📝 Notas: Secretos, tips o lo que se te ocurra</label>
+        <!--Validación-->
+        @if (notas.invalid && (notas.dirty || notas.touched)) {
+          <!-- Alerta para 'required' -->
+          @if (notas.errors?.['required']) {
+            <div class="alert alert-danger" role="alert">
+              ¿Debes dejar alguna nota? ¡No seas tímido!
+            </div>
+          }
+          <!-- Alerta para 'maxLength' -->
+          @if (notas.errors?.['maxlength']) {
+            <div class="alert alert-warning" role="alert">
+              ¡Te copaste escribiendo! Tratá de resumirlo un poco.
+            </div>
+          }
+          <!-- Alerta para 'minLength' -->
+          @if (notas.errors?.['minlength']) {
+            <div class="alert alert-warning" role="alert">
+              Eso es muy cortito. Danos un poco más de info.
+            </div>
+          }
+          <!-- Alerta para '@notas' -->
+          @if (notas.errors?.['notas']) {
+            <div class="alert alert-warning" role="alert">
+              No entendemos bien esa nota. ¿Quieres revisarla?
+            </div>
+          }
+          <!-- Alerta para 'notOnlyWhiteSpace' -->
+          @if (notas.errors?.['notOnlyWhiteSpace']) {
+            <div class="alert alert-danger" role="alert">
+              ¡Ups! Solo hay espacios. ¿Puedes escribir algo?
             </div>
           }
         }
@@ -80,10 +284,17 @@ notas: string
         <button type="submit" class="btn btn-m btn-success">Guardar</button>
       </div>
     </form>
+
+    @if (mostrarBotonEliminar) {
+    <!-- Botón de Eliminar -->
+    <div class="btn-group mt-3">
+      <button class="btn btn-m btn-success" (click)="eliminarPlanta(id)">Eliminar</button>
+    </div>
+  }
     <!-- Fin del Formulario -->
   </div>
   <div class="container mt-5">
-    <button type="button" class="btn btn-outline-primary" routerLink="">¿Luego? VOLVER
+    <button type="button" class="btn btn-outline-primary" (click)="volverAtras()">¿Luego? VOLVER
     </button>
   </div>
 </div>

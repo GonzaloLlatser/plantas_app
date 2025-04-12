@@ -29,6 +29,7 @@ public class PlantaController {
 
   @PostMapping("/new")
   public ResponseEntity<Map<String, Object>> agregarPlanta(@RequestBody PlantaModel planta) {
+
     Map<String, Object> response = new HashMap<>();
     PlantaModel newPlanta = plantaService.agregarPlanta(planta);
 
@@ -72,7 +73,7 @@ public class PlantaController {
     ));
   }
 
-  @PutMapping("/{id}")
+  @PutMapping("modificar/{id}")
   public ResponseEntity<Map<String, Object>> actualizarPlanta(@PathVariable Long id, @RequestBody PlantaModel plantaDetalles) {
     if (plantaService.actualizarPlanta(id, plantaDetalles)) {
       return ResponseEntity.ok(Map.of(

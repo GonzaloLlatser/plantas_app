@@ -21,12 +21,12 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'plantaDetalle/:id',
+    path: 'planta/editar/:id',
     component: NewEditPlantaComponent,
     pathMatch: 'full'
   },
   {
-    path: 'plantaNueva',
+    path: 'planta/nueva/:idUsuario',
     component: NewEditPlantaComponent,
     pathMatch: 'full'
   },

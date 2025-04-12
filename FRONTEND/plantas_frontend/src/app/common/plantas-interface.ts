@@ -8,6 +8,25 @@ export interface PlantasInterface {
   ubicacion: string
   tipoPlanta: string
   notas: string
+  usuario?: { id: number }
 }
 
-export type Plantas = PlantasInterface[];
+export interface RespuestaInterface {
+  success: boolean
+  planta: PlantasInterface
+}
+
+export interface PlantasInterfaceByBackend {
+  id: number;
+  nombre: string;
+  fechaAdquisicion: number[];
+  fechaUltimoRiego: number[];
+  fechaProximoRiego: number[];
+  fechaPoda: number[];
+  ubicacion: string;
+  tipoPlanta: string;
+  notas: string;
+  usuario?: { id: number };
+}
+
+

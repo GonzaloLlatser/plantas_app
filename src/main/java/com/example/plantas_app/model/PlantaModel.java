@@ -1,5 +1,6 @@
 package com.example.plantas_app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,8 +19,8 @@ public class PlantaModel {
 
   private String nombre;
   private LocalDate fechaAdquisicion;
-  private LocalDate ultimoRiego;
-  private LocalDate proximoRiego;
+  private LocalDate fechaUltimoRiego;
+  private LocalDate fechaProximoRiego;
   private LocalDate fechaPoda;
   private String ubicacion;
   private String tipoPlanta;
@@ -27,6 +28,6 @@ public class PlantaModel {
 
   @ManyToOne
   @JoinColumn(name = "usuario_id", nullable = false)
-  @JsonIgnore
+  @JsonBackReference
   private UsuarioModel usuario;
 }

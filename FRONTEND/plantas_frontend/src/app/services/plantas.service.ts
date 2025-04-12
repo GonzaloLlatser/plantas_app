@@ -1,10 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {UserLoginInterface} from '../common/user-login-interface';
 import {Observable} from 'rxjs';
 import {environment} from '../environment/environment';
-import {PlantasInterface} from '../common/plantas-interface';
-import {userNewInterface} from '../common/user-new-interface';
+import {PlantasInterface, PlantasInterfaceByBackend, RespuestaInterface} from '../common/plantas-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +16,39 @@ export class PlantasService {
     return this.http.get<PlantasInterface[]>(environment.url_base + 'api/plantas/usuario/' + id);
   }
 
-  crearNuevaPlanta(planta: PlantasInterface): Observable<any> {
+  crearNuevaPlanta(planta: {
+    id: any;
+    nombre: any;
+    fechaAdquisicion: string;
+    fechaUltimoRiego: string;
+    fechaProximoRiego: string;
+    fechaPoda: string;
+    ubicacion: any;
+    tipoPlanta: any;
+    notas: any
+  }): Observable<any> {
     return this.http.post<any>(environment.url_base + 'api/plantas/new', planta);
+  }
+
+  unaPlanta(id: number): Observable<any> {
+    return this.http.get<any>(environment.url_base + 'api/plantas/' + id);
+  }
+
+  guardarPlanta(planta: {
+    id: any;
+    nombre: any;
+    fechaAdquisicion: string;
+    fechaUltimoRiego: string;
+    fechaProximoRiego: string;
+    fechaPoda: string;
+    ubicacion: any;
+    tipoPlanta: any;
+    notas: any
+  }): Observable<any> {
+    return this.http.put<any>(environment.url_base + 'api/plantas/modificar/' + planta.id, planta);
+  }
+
+  eliminarPlanta(idPlanta: number) {
+    return this.http.delete(environment.url_base + 'api/plantas/' + idPlanta);
   }
 }

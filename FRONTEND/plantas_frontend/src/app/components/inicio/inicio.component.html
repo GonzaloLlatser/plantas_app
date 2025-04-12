@@ -19,7 +19,7 @@
   </div>
 </div>
 
-@defer (when plantas) {
+@defer (when plantasCargadas) {
   <div class="row d-flex justify-content-center mt-5">
     @for (planta of plantas; track $index) {
       <div class="col col-md-3 mb-4">
@@ -41,15 +41,28 @@
           </div>
           <div class="card-footer text-muted text-center bg-light border-top">
             <h4 class="text-success">¡Novedades!</h4>
-            <p class="text-success">{{ planta.proximoRiego }}</p>
-            <a [routerLink]="['/plantaDetalle', planta.id]" class="btn btn-outline-success btn-sm">Ver Detalles</a>
+            <p class="text-success">{{ planta.fechaProximoRiego }}</p>
+            <a [routerLink]="['/planta/editar/', planta.id]" class="btn btn-outline-success btn-sm">Ver Detalles</a>
           </div>
         </div>
       </div>
     }
   </div>
+} @placeholder (minimum 5000) {
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 }
-@if (plantas.length < 1) {
+
+<div class="text-center mt-2">
+  <p class="text-success"></p>
+  <a [routerLink]="['/planta/nueva/',id]" class="btn btn-outline-success btn-sm">AGREGAR NUEVA PLANTA</a>
+</div>
+
+
+@if (!plantasCargadas) {
   <div class="container">
     <div>
       <h3> AUN NO TIENES PLANTAS- AGREAG LAS PLANTAS QUE TIENES A CARGO!</h3>
@@ -64,14 +77,10 @@
 
     <div class="text-center mt-2">
       <p class="text-success"></p>
-      <a [routerLink]="'/plantaNueva'" class="btn btn-outline-success btn-sm">AGREGAR NUEVA PLANTA</a>
+      <a [routerLink]="['planta/nueva/',id]" class="btn btn-outline-success btn-sm">AGREGAR NUEVA PLANTA</a>
     </div>
   </div>
-
-
 }
-
-
 <!-- Modal -->
 <div class="modal fade" [attr.id]="'actualizarDatosModal'"
      tabindex="-1"
