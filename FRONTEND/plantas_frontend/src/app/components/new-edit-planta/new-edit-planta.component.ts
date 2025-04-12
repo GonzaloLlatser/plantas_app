@@ -13,7 +13,6 @@ import {Location} from '@angular/common';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    RouterLink,
     NgbInputDatepicker
   ],
   templateUrl: './new-edit-planta.component.html',
