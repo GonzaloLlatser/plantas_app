@@ -55,7 +55,6 @@ export class LoginUserComponent {
       this.formUserLogin.markAllAsTouched();
       return;
     }
-
     // Obtiene datos del formulario
     const usuario: UserLoginInterface = this.formUserLogin.getRawValue();
     console.log('Iniciando sesión con:', usuario.email, usuario.password);
@@ -63,7 +62,6 @@ export class LoginUserComponent {
     this.usersService.usuarioLogin(usuario).subscribe({
       next: (response) => {
         console.log('Respuesta del backend:', response);
-
         if (response.success) {
           console.log('✅ Login exitoso:', response.message);
           alert('✅ Login exitoso:');

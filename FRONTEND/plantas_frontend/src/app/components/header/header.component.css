@@ -1,0 +1,15 @@
+.navBarClass {
+  background-color: rgba(153, 171, 50, 0.16);
+  height: 4.5em;
+}
+
+a {
+  color: rgb(218, 187, 116);
+  font-size: 1.2em;
+  font-family: "Calistoga", serif;
+}
+
+.iconoLogo {
+  width: 3em;
+  height: 3em;
+}
