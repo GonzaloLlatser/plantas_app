@@ -1,15 +1,19 @@
 .navBarClass {
-  background-color: rgba(153, 171, 50, 0.16);
-  height: 4.5em;
+  background: linear-gradient(to right, #e9eee6, #565601);
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 a {
-  color: rgb(218, 187, 116);
+  color: #8a8a0d;
   font-size: 1.2em;
-  font-family: "Calistoga", serif;
+  font-family: "Righteous", sans-serif;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.iconoLogo {
-  width: 3em;
-  height: 3em;
+a:hover {
+  color: #6d6d09;
 }

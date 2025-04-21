@@ -1,0 +1,26 @@
+.inicio-background {
+  background-image: url('../../../../public/images/indoor-plants.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2em;
+  height: 100vh;
+}
+
+.titulo {
+  text-align: center;
+  font-family: "Righteous", sans-serif;
+  color: #283d06;
+}
+
+/* Estilos generales para inputs, selects y text */
+.formularioCSS_clase input,
+.formularioCSS_clase select,
+.formularioCSS_clase textarea
+.formularioCSS_clase text {
+  width: 100%;
+  margin: 8px 0;
+  background-color: rgb(255, 255, 255);
+  border-color: rgba(128, 164, 37, 0);
+  box-shadow: 0 0 5px rgba(25, 145, 7, 0);;
+}

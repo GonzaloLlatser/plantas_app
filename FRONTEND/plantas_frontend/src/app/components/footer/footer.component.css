@@ -1,7 +1,6 @@
 footer {
-  background-color: rgba(164, 112, 15, 0.44);
-
-  color: #f5e6e1;
+  background: linear-gradient(to right, #e9eee6, #565601);
+  color: #565601;
   font-size: 1em;
   font-family: "Calistoga", serif;
   min-height: 1em;

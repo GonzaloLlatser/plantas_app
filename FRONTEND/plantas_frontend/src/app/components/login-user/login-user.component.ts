@@ -4,6 +4,8 @@ import {UsersService} from '../../services/users.service';
 import {UserLoginInterface} from '../../common/user-login-interface';
 import {Router, RouterLink} from '@angular/router';
 import {FormValidators} from '../../validators/FormValidators';
+import {NgbToast} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-login-user',
@@ -11,7 +13,8 @@ import {FormValidators} from '../../validators/FormValidators';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    NgbToast
   ],
   styleUrl: './login-user.component.css'
 })
@@ -19,6 +22,11 @@ export class LoginUserComponent {
   // Define Servicio
   private readonly usersService = inject(UsersService);
   private readonly router = inject(Router);
+  // Define Toast
+  toastShow = false;
+  toastMensaje = "";
+  toastColor = "";
+
   // Define Cte
   usuario!: UserLoginInterface;
   // ----- Formulario ---------------------------------------
@@ -49,6 +57,8 @@ export class LoginUserComponent {
   // ---------------------------------------------------------
 
   // Define Metodo para iniciar sesión
+
+
   login() {
     // Validación del Formulario
     if (this.formUserLogin.invalid) {
@@ -63,17 +73,13 @@ export class LoginUserComponent {
       next: (response) => {
         console.log('Respuesta del backend:', response);
         if (response.success) {
-          console.log('✅ Login exitoso:', response.message);
-          alert('✅ Login exitoso:');
           this.router.navigateByUrl('inicio/' + response.id); // Redirigir a inicio
         } else {
-          console.warn('⚠️ Credenciales incorrectas:', response.message);
-          alert(response.message);
+          alert("⚠️ Ups! Revisa los datos. Intentalo de nuevo.");
         }
       },
       error: (error) => {
         console.error('❌ Error en el login:', error);
-        alert('Error al conectar con el servidor');
       }
     });
   }

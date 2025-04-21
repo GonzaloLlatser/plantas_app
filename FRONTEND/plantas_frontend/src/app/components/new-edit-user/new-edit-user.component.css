@@ -1,0 +1,76 @@
+.login-background {
+  background-image: url('../../../../public/images/indoor-plants-image1.jpg');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  padding: 2em;
+  height: 100vh;
+}
+
+.contenedor_login{
+  width: 40em;
+  margin-left: 5em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formularioCSS_clase {
+  background-color: rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  padding: 2em;
+  max-width: 30em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #2d2c2c;
+  width: 30em;
+}
+
+/* Estilos generales para inputs, selects y text */
+.formularioCSS_clase input,
+.formularioCSS_clase select,
+.formularioCSS_clase textarea,
+.formularioCSS_clase input[type="password"],
+.formularioCSS_clase input[type="email"] {
+  width: 100%;
+  margin: 8px 0;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Estilos cuando el input, select o textarea está en foco */
+.formularioCSS_clase input:focus,
+.formularioCSS_clase select:focus,
+.formularioCSS_clase textarea:focus,
+.formularioCSS_clase input[type="email"]:focus,
+.formularioCSS_clase input[type="password"]:focus {
+  background-color: #ffffff; /* Fondo blanco al hacer foco */
+  border-color: rgba(128, 164, 37, 0); /* Borde verde al hacer foco */
+  box-shadow: 0 0 5px rgba(25, 145, 7, 0);
+}
+
+.textVistaCSS {
+  font-family: 'Lobster', sans-serif;
+  color: #FFCF50;
+}
+
+.botonCSS {
+  background-color: #FFCF50;
+  border: none;
+  font-size: 1.5em;
+  color: #443627;
+}
+
+.botonEntrar {
+  font-family: "Calistoga", serif;
+  color: #443627;
+  background-color: #FFCF50;
+}
+
+.titulo {
+  font-family: "Righteous", sans-serif;
+  font-size: clamp(2rem, 6vw, 5em);
+  color: #565601;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+  letter-spacing: 2px;
+}

@@ -1,0 +1,84 @@
+.inicio-background {
+  background-image: url('../../../../public/images/indoor-plants-studio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2em;
+  height: 100vh;
+}
+
+.menuOpcionesCuenta {
+  background-color: rgba(255, 255, 255, 0.82);
+  border-radius: 8px;
+  padding: 1em;
+  max-width: 10em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.formularioCSS_clase {
+  background-color: rgba(255, 255, 255, 0.82);
+  border-radius: 8px;
+  padding: 3em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.botonCSS {
+  background-color: #FFCF50;
+  border: none;
+  font-size: 1.5em;
+  color: #443627;
+  font-family: "Calistoga", serif;
+}
+
+.textContenedor {
+  font-family: "Calistoga", serif;
+  color: rgba(48, 63, 11, 0.75);
+  text-align: center;
+  font-size: 1.5em;
+}
+
+p {
+  font-family: 'Lobster', sans-serif;
+  font-size: 1.5em;
+}
+
+.bt_actualizar {
+  background-color: rgba(255, 207, 80, 0.66);
+  border-radius: 8px;
+  font-family: "Righteous", sans-serif;
+}
+
+.bt_eliminar {
+  background-color: rgba(164, 163, 160, 0.54);
+  border: none;
+  border-radius: 8px;
+  font-family: "Righteous", sans-serif;
+}
+
+.bt_cerrarSesion {
+  background-color: rgba(255, 86, 80, 0.56);
+  font-family: "Righteous", sans-serif;
+}
+
+/* Estilos para el label flotante */
+.form-floating label {
+  font-size: 1rem; /* Ajusta el tamaño del texto */
+  top: -10px; /* Ajusta la posición de la etiqueta flotante */
+  left: 12px; /* Alinea el label a la izquierda */
+  transition: 0.3s ease; /* Transición suave cuando el input está enfocado */
+}
+
+.card-header{
+  background-color: #565601;
+}
+
+.card-text{
+  font-family: 'Poppins', sans-serif;
+  color: #034f05;
+  font-size: 1.2em;
+}
+.card-footer-btn{
+  background-color: #FFCF50;
+
+}
+

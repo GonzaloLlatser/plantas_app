@@ -1,222 +1,231 @@
-<div class="container row ">
-  <!-- Botón de Modal -->
-  <div class="btn-group mt-3 col-md-2">
-    <button type="submit" class="btn btn-m btn-warning" data-bs-toggle="modal" data-bs-target="#actualizarDatosModal">
-      Editar Cuenta
-    </button>
-  </div>
-</div>
-<div class="container row">
-  <!-- Botón de Eliminar -->
-  <div class="btn-group mt-3 col-md-2">
-    <button type="submit" class="btn btn-m btn-danger" (click)="eliminarUsuario(id)">Eliminar Cuenta</button>
-  </div>
-</div>
-<div class="container row">
-  <!-- Botón de Cerrar sesión -->
-  <div class="btn-group mt-3 col-md-2">
-    <button type="submit" class="btn btn-m btn-info">Cerrar sesión</button>
-  </div>
-</div>
-
-@defer (when plantasCargadas) {
-  <div class="row d-flex justify-content-center mt-5">
-    @for (planta of plantas; track $index) {
-      <div class="col col-md-3 mb-4">
-        <div class="card shadow-lg border-0 rounded">
-          <div class="card-header text-center bg-success text-white rounded-top">
-            <h5 class="card-title">{{ planta.nombre }}</h5>
-          </div>
-          <div class="text-center mt-2">
-            <img
-              [src]="'/images/img_default.png'"
-              [alt]="'Sin nombre'"
-              class="card-img-bottom w-50">
-          </div>
-
-          <div class="card-body">
-            <p class="card-text"><strong>Tipo:</strong> {{ planta.tipoPlanta }}</p>
-            <p class="card-text"><strong>Ubicación:</strong> {{ planta.ubicacion }}</p>
-            <p class="card-text"><strong>Notas:</strong> {{ planta.notas }}</p>
-          </div>
-          <div class="card-footer text-muted text-center bg-light border-top">
-            <h4 class="text-success">¡Novedades!</h4>
-            <p class="text-success">{{ planta.fechaProximoRiego }}</p>
-            <a [routerLink]="['/planta/editar/', planta.id]" class="btn btn-outline-success btn-sm">Ver Detalles</a>
-          </div>
+<div class="container-fluid inicio-background flex ">
+  <div class="row justify-content mt-5">
+    <div class="col col-md-2 col-sm-12">
+      <!-- Opciones del Perfil -->
+      <div class="flex-column menuOpcionesCuenta">
+        <p>Editar Perfil de Usuario:</p>
+        <button type="submit" class="btn btn-m bt_actualizar m-2" data-bs-toggle="modal"
+                data-bs-target="#actualizarDatosModal">
+          Editar Cuenta
+        </button>
+        <button type="submit" class="btn btn-m m-2 bt_cerrarSesion">Cerrar sesión</button>
+        <button type="submit" class="btn btn-m m-2 bt_eliminar" data-bs-toggle="modal"
+                data-bs-target="#eliminarCuentaModal">
+          Eliminar Cuenta
+        </button>
+      </div>
+    </div>
+    @if (!plantas) {
+      <div class="col col-md-9 col-sm-6 justify-content-center align-items-center flex-column formularioCSS_clase">
+        <p class="textContenedor">Aún no has agregado tus plantas. No lo dejes para más tarde y ponte a ello.</p>
+        <div class="text-center mt-2">
+          <img
+            [src]="'/images/plantaLogoApp.png'"
+            [alt]="'Icono principal'"
+            class="card-img-bottom w-25">
+        </div>
+        <div class="text-center mt-2">
+          <a [routerLink]="['/planta/nueva/'+id_usuario]" class="btn botonCSS btn-sm">Agrega una nueva planta</a>
         </div>
       </div>
     }
-  </div>
-} @placeholder (minimum 5000) {
-  <div class="d-flex justify-content-center mt-5">
-    <div class="spinner-grow text-primary" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-}
+    @defer (when plantas) {
+      <div class="col col-md-9 col-sm-6 justify-content-center align-items-center flex-column ">
+        <div class="row d-flex justify-content-center mt-2">
+          @for (planta of plantas; track $index) {
+            <div class="col col-md-4 mb-4">
+              <div class="card shadow-lg border-0 rounded-4 bg-light-subtle">
+                <!-- Header con nombre -->
+                <div class="card-header text-center text-white rounded-top-4">
+                  <h5 class="card-title m-0 fw-bold">{{ planta.nombre }}</h5>
+                </div>
 
-<div class="text-center mt-2">
-  <p class="text-success"></p>
-  <a [routerLink]="['/planta/nueva/',id]" class="btn btn-outline-success btn-sm">AGREGAR NUEVA PLANTA</a>
-</div>
+                <!-- Imagen -->
+                <div class="text-center mt-3">
+                  <img
+                    [src]="'/images/img_default.png'"
+                    [alt]="'Imagen de ' + planta.nombre"
+                    class="rounded-circle border border-3 border-success-subtle shadow-sm"
+                    style="width: 120px; height: 120px; object-fit: cover;">
+                </div>
 
+                <!-- Cuerpo con info -->
+                <div class="card-body px-4 py-3">
+                  <p class="card-text mb-1"><strong>🌿 Tipo:</strong> {{ planta.tipoPlanta }}</p>
+                  <p class="card-text mb-1"><strong>📍 Ubicación:</strong> {{ planta.ubicacion | slice:0:10 }} ...</p>
+                  <p class="card-text mb-1"><strong>🗓️ Adquirida:</strong> {{ planta.fechaAdquisicion }}</p>
+                  <p class="card-text mb-1"><strong>✂️ Última poda:</strong> {{ planta.fechaPoda }}</p>
+                  <p class="card-text mb-1"><strong>💧 Último riego:</strong> {{ planta.fechaUltimoRiego }}</p>
+                  <p class="card-text mb-1"><strong>🚿 ¡Próximo riego!: </strong>{{ planta.fechaProximoRiego }}</p>
 
-@if (!plantasCargadas) {
-  <div class="container">
-    <div>
-      <h3> AUN NO TIENES PLANTAS- AGREAG LAS PLANTAS QUE TIENES A CARGO!</h3>
-    </div>
+                  <!-- Notas con truncado y tooltip -->
+                  <p class="card-text mt-2 text-dark fst-italic" [title]="planta.notas">
+                    <strong>📝 Notas:</strong> {{ planta.notas | slice:0:50 }}<span
+                    *ngIf="planta.notas.length > 50">...</span>
+                  </p>
+                </div>
 
-    <div class="text-center mt-2">
-      <img
-        [src]="'/images/img_default.png'"
-        [alt]="'Sin nombre'"
-        class="card-img-bottom w-25">
-    </div>
-
-    <div class="text-center mt-2">
-      <p class="text-success"></p>
-      <a [routerLink]="['planta/nueva/',id]" class="btn btn-outline-success btn-sm">AGREGAR NUEVA PLANTA</a>
-    </div>
-  </div>
-}
-<!-- Modal -->
-<div class="modal fade" [attr.id]="'actualizarDatosModal'"
-     tabindex="-1"
-     aria-labelledby="deleteModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="actualizarDatosModalLabel">¡Aquí es donde actualizas tus datos!</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- Footer con acción -->
+                <div class="card-footer text-center bg-white border-top-0 pb-3">
+                  <a [routerLink]="['/planta/editar', planta.id, id_usuario]"
+                     class="btn btn-sm rounded px-4 card-footer-btn">
+                    Ver Detalles
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="text-center mt-2">
+          <a [routerLink]="['/planta/nueva/'+id_usuario]" class="btn botonCSS btn-sm">Agrega una nueva planta</a>
+        </div>
       </div>
-      <div class="modal-body">
-        <div class="container mt-5">
-          <!-- Formulario-->
-          <div class="col-md-6">
+    } @placeholder () {
+      <div class="d-flex justify-content-center mt-5"></div>
+    }
+
+    <!-- Modal -->
+    <div class="modal fade" [attr.id]="'actualizarDatosModal'"
+         tabindex="-1"
+         aria-labelledby="actualizarDatosModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content modalEstilos shadow-lg border-0 rounded-4">
+
+          <!-- Header -->
+          <div class="modal-header bg-primary text-white rounded-top">
+            <h1 class="modal-title fs-4 fw-bold" id="actualizarDatosModalLabel">
+              ✏️ ¡Hora de actualizar tus datos!
+            </h1>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Cerrar"></button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body px-5 py-4">
             <form [formGroup]="formUserEdit" (ngSubmit)="actualizarCuenta()">
-              <!-- Campo Nombre-->
-              <div class="form-floating">
-                <input type="nombre" formControlName="nombre" class="form-control" id="nombre" placeholder="nombre">
-                <label for="nombre">Nombre</label>
-                <!--Validación-->
+              <!-- Nombre -->
+              <div class="form-floating mb-4">
+                <input type="text" formControlName="nombre" class="form-control" id="nombre" placeholder="Nombre">
+                <label for="nombre">👤 Nombre</label>
+                <!-- Validaciones -->
                 @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
-                  <!-- Alerta para 'required' -->
                   @if (nombre.errors?.['required']) {
-                    <div class="alert alert-danger" role="alert">
-                      ¡Debes indicar un nombre!
-                    </div>
+                    <div class="alert alert-danger mt-2">¡Debes indicar un nombre!</div>
                   }
-                  <!-- Alerta para 'maxLength' -->
                   @if (nombre.errors?.['maxlength']) {
-                    <div class="alert alert-warning" role="alert">
-                      ¡No superes los 50 caracteres!
-                    </div>
+                    <div class="alert alert-warning mt-2">¡No superes los 50 caracteres!</div>
                   }
-                  <!-- Alerta para 'minLength' -->
                   @if (nombre.errors?.['minlength']) {
-                    <div class="alert alert-warning" role="alert">
-                      ¡Escribe tu nombre completo!
-                    </div>
+                    <div class="alert alert-warning mt-2">¡Escribe tu nombre completo!</div>
                   }
-                  <!-- Alerta para '@nombre' -->
                   @if (nombre.errors?.['nombre']) {
-                    <div class="alert alert-warning" role="alert">
-                      ¡¿Estas seguro? Eso no parece un nombre!
-                    </div>
+                    <div class="alert alert-warning mt-2">¿Estás seguro? Eso no parece un nombre.</div>
                   }
-                  <!-- Alerta para 'notOnlyWhiteSpace' -->
                   @if (nombre.errors?.['notOnlyWhiteSpace']) {
-                    <div class="alert alert-danger" role="alert">
-                      ¿Estás seguro de que tu nombre tiene solo espacios en blanco?
-                    </div>
+                    <div class="alert alert-danger mt-2">¿Solo espacios? Dale, poné tu nombre 😅</div>
                   }
                 }
               </div>
-              <!-- Campo Email-->
-              <div class="form-floating mt-3">
-                <input type="email" formControlName="email" class="form-control" id="email" placeholder="email">
-                <label for="email">Email</label>
-                <!--Validación-->
+
+              <!-- Email -->
+              <div class="form-floating mb-4">
+                <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+                <label for="email">📧 Email</label>
                 @if (email.invalid && (email.dirty || email.touched)) {
-                  <!-- Alerta para 'required' -->
                   @if (email.errors?.['required']) {
-                    <div class="alert alert-danger" role="alert">
-                      ¡Debes indicar un email!
-                    </div>
+                    <div class="alert alert-danger mt-2">¡Debes indicar un email!</div>
                   }
-                  <!-- Alerta para 'maxLength' -->
                   @if (email.errors?.['maxlength']) {
-                    <div class="alert alert-warning" role="alert">
-                      ¡No superes los 50 caracteres!
-                    </div>
+                    <div class="alert alert-warning mt-2">¡No superes los 50 caracteres!</div>
                   }
-                  <!-- Alerta para 'minLength' -->
                   @if (email.errors?.['minlength']) {
-                    <div class="alert alert-warning" role="alert">
-                      ¡Escribe tu correo completo!
-                    </div>
+                    <div class="alert alert-warning mt-2">¡Escribe tu correo completo!</div>
                   }
-                  <!-- Alerta para '@correo' -->
                   @if (email.errors?.['email']) {
-                    <div class="alert alert-warning" role="alert">
-                      ¡¿Estas seguro? Eso no parece un correo!
-                    </div>
+                    <div class="alert alert-warning mt-2">¿Estás seguro? Eso no parece un correo.</div>
                   }
-                  <!-- Alerta para 'notOnlyWhiteSpace' -->
                   @if (email.errors?.['notOnlyWhiteSpace']) {
-                    <div class="alert alert-danger" role="alert">
-                      ¿Estás seguro de que tu email tiene solo espacios en blanco?
-                    </div>
+                    <div class="alert alert-danger mt-2">¿Solo espacios? No parece válido.</div>
                   }
                 }
               </div>
-              <!-- Campo Password-->
-              <div class="form-floating mt-3">
+
+              <!-- Password -->
+              <div class="form-floating mb-4">
                 <input type="password" formControlName="password" class="form-control" id="password"
-                       placeholder="password">
-                <label for="password">Password</label>
+                       placeholder="Contraseña">
+                <label for="password">🔒 Contraseña</label>
                 @if (password.invalid && (password.dirty || password.touched)) {
-                  <!-- Alerta para 'required' -->
                   @if (password.errors?.['required']) {
-                    <div class="alert alert-danger" role="alert">
-                      ¡Debes indicar una contraseña!
-                    </div>
-                  }   <!-- Alerta para 'minLength' -->
+                    <div class="alert alert-danger mt-2">¡Debes indicar una contraseña!</div>
+                  }
                   @if (password.errors?.['minlength']) {
-                    <div class="alert alert-warning" role="alert">
-                      ¡La contraseña debe tener al menos 8 caracteres!
-                    </div>
+                    <div class="alert alert-warning mt-2">¡Debe tener al menos 8 caracteres!</div>
                   }
-                  <!-- Alerta para 'maxLength' -->
                   @if (password.errors?.['maxlength']) {
-                    <div class="alert alert-warning" role="alert">
-                      ¡No superes los 20 caracteres!
-                    </div>
+                    <div class="alert alert-warning mt-2">¡No superes los 20 caracteres!</div>
                   }
-                  <!-- Alerta para 'notOnlyWhiteSpace' -->
                   @if (password.errors?.['notOnlyWhiteSpace']) {
-                    <div class="alert alert-danger" role="alert">
-                      ¿Estás seguro de que tu password tiene solo espacios en blanco?
-                    </div>
+                    <div class="alert alert-danger mt-2">¿Solo espacios? ¡Eso no sirve como contraseña!</div>
                   }
                 }
               </div>
-              <!-- Botón de Guardar -->
-              <div class="btn-group mt-3">
-                <button type="submit" class="btn btn-m btn-success" data-bs-dismiss="modal">Guardar</button>
+
+              <!-- Botón Guardar -->
+              <div class="text-end">
+                <button type="submit" class="btn btn-success px-4 but">
+                  💾 Guardar cambios
+                </button>
               </div>
             </form>
-            <!-- Fin del Formulario -->
+          </div>
+
+          <!-- Footer -->
+          <div class="modal-footer bg-light rounded-bottom d-flex justify-content-between">
+            <small class="text-muted">Puedes cerrar sin guardar si cambiaste de opinión 😌</small>
+            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
+              Cancelar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--Finaliza Modal-->
+
+    <!-- Modal -->
+    <div class="modal fade" [attr.id]="'eliminarCuentaModal'"
+         tabindex="-1"
+         aria-labelledby="deleteModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content modalEstilos shadow-lg border-0 rounded-4">
+          <div class="modal-header bg-danger bg-gradient text-white rounded-top">
+            <h1 class="modal-title fs-4 fw-bold">
+              ⚠️ ¡Cuidado! Esta acción eliminará tu cuenta permanentemente
+            </h1>
+          </div>
+          <div class="modal-body text-center">
+            <p class="fs-5 text-dark-emphasis">
+              ¿Estás seguro? <br>
+              ¿Quién cuidará de tus plantas?
+            </p>
+            <h6 class="text-danger fw-semibold mt-3">
+              Si deseas continuar, haz click en <span class="text-decoration-underline">Aceptar</span>.
+            </h6>
+          </div>
+          <div class="modal-footer d-flex justify-content-between bg-light rounded-bottom">
+            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
+              ❌ Cancelar
+            </button>
+            <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal" (click)="eliminarUsuario(usuario.id)">
+              🗑️ Aceptar
+            </button>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-      </div>
     </div>
+    <!--Finaliza Modal-->
   </div>
 </div>
-<!--Finaliza Modal-->

@@ -6,18 +6,21 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {FormValidators} from '../../validators/FormValidators';
 import {PlantasService} from '../../services/plantas.service';
 import {PlantasInterface} from '../../common/plantas-interface';
+import {DatePipe, NgClass, SlicePipe} from '@angular/common';
 
 @Component({
   selector: 'app-inicio',
   imports: [
     ReactiveFormsModule,
     RouterLink,
+    SlicePipe,
   ],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
+
 export class InicioComponent implements OnInit {
-  @Input('id') protected id!: number;
+  @Input('id') protected id_usuario!: number;
   // Define Servicio
   private readonly usersService = inject(UsersService);
   private readonly plantasService = inject(PlantasService);
@@ -65,8 +68,7 @@ export class InicioComponent implements OnInit {
   // ---------------------------------------------------------
 
   ngOnInit(): void {
-    if (this.id) {
-      console.log(this.id);
+    if (this.id_usuario) {
       this.unUsuario();
       this.plantasDelUsuario();
     }
@@ -74,7 +76,7 @@ export class InicioComponent implements OnInit {
 
   // Define Metodo -> Obtiene Usuario
   private unUsuario() {
-    this.usersService.buscarUsuario(this.id).subscribe({
+    this.usersService.buscarUsuario(this.id_usuario).subscribe({
       next: data => {
         this.usuario = data;
         console.log(this.usuario);
@@ -96,6 +98,7 @@ export class InicioComponent implements OnInit {
       error: err => console.log(err),
       complete: () => {
         console.log("Usuario eliminado");
+        this.router.navigate(['/loginUser']);
       }
     })
   }
@@ -112,6 +115,7 @@ export class InicioComponent implements OnInit {
     this.usersService.modificarUsuario(usuario).subscribe({
       next: data => {
         console.log(data.message);
+        this.router.navigate(['/inicio/'+ this.id_usuario]);
       },
       error: err => console.log(err),
       complete: () => {
@@ -123,7 +127,7 @@ export class InicioComponent implements OnInit {
 
   // Define Metodo -> Obtiene las plantas del usuario
   private plantasDelUsuario() {
-    this.plantasService.todasLasPlantasUsuario(this.id).subscribe({
+    this.plantasService.todasLasPlantasUsuario(this.id_usuario).subscribe({
       next: data => {
         this.plantas = data;
         console.log(this.plantas);
@@ -134,5 +138,10 @@ export class InicioComponent implements OnInit {
         console.log("Plantas obtenidas");
       }
     })
+  }
+
+  // Define Metodo -> Formato fecha
+  transformarFecha(fechaObj: { year: number, month: number, day: number }): Date {
+    return new Date(fechaObj.year, fechaObj.month - 1, fechaObj.day);
   }
 }

@@ -1,32 +1,41 @@
 .login-background {
-  background-image: url('../../../../public/images/bg.image.jpg');
+  background-image: url('../../../../public/images/indoor-plants-image1.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat;
   padding: 2em;
+  height: 100vh;
+}
+
+.contenedor_login{
+  width: 40em;
+  margin-left: 5em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .formularioCSS_clase {
-  margin-top: 2em;
-  margin-bottom: 2em;
-  background-color: rgba(70, 73, 20, 0.53);
+  background-color: rgba(255, 255, 255, 0.55);
   border-radius: 8px;
-  padding: 3em;
-  max-width: 50em;
+  padding: 2em;
+  max-width: 30em;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #2d2c2c;
+  width: 30em;
 }
 
-/* Estilos generales para inputs, selects y textareas */
+/* Estilos generales para inputs, selects y text */
 .formularioCSS_clase input,
 .formularioCSS_clase select,
 .formularioCSS_clase textarea,
 .formularioCSS_clase input[type="password"],
 .formularioCSS_clase input[type="email"] {
   width: 100%;
-  padding: 12px;
   margin: 8px 0;
-  background-color: rgba(255, 255, 255, 0.85);
-  transition: background-color 0.3s ease, border-color 0.3s ease; /* Transición suave */
+  background-color: rgb(255, 255, 255);
 }
 
 /* Estilos cuando el input, select o textarea está en foco */
@@ -36,26 +45,13 @@
 .formularioCSS_clase input[type="email"]:focus,
 .formularioCSS_clase input[type="password"]:focus {
   background-color: #ffffff; /* Fondo blanco al hacer foco */
-  border-color: rgba(128, 164, 37, 0.42); /* Borde verde al hacer foco */
-  box-shadow: 0 0 5px rgba(25, 145, 7, 0.37); /* Sombra suave verde */
-}
-
-/* Estilos para el label flotante */
-.form-floating label {
-  font-size: 1rem; /* Ajusta el tamaño del texto */
-  top: -10px; /* Ajusta la posición de la etiqueta flotante */
-  left: 12px; /* Alinea el label a la izquierda */
-  transition: 0.3s ease; /* Transición suave cuando el input está enfocado */
+  border-color: rgba(128, 164, 37, 0); /* Borde verde al hacer foco */
+  box-shadow: 0 0 5px rgba(25, 145, 7, 0);
 }
 
 .textVistaCSS {
   font-family: 'Lobster', sans-serif;
   color: #FFCF50;
-}
-
-label {
-  font-family: "Calistoga", serif;
-  color: rgba(193, 70, 0, 0.75);
 }
 
 .botonCSS {
@@ -65,13 +61,16 @@ label {
   color: #443627;
 }
 
-.botonEntrar{
+.botonEntrar {
   font-family: "Calistoga", serif;
   color: #443627;
+  background-color: #FFCF50;
 }
 
-.titulo{
+.titulo {
   font-family: "Righteous", sans-serif;
-  font-size:5em;
-  color: #545403;
+  font-size: clamp(2rem, 6vw, 5em);
+  color: #565601;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+  letter-spacing: 2px;
 }

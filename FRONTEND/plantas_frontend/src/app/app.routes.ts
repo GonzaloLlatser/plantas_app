@@ -2,7 +2,8 @@ import {Routes} from '@angular/router';
 import {InicioComponent} from './components/inicio/inicio.component';
 import {LoginUserComponent} from './components/login-user/login-user.component';
 import {NewEditUserComponent} from './components/new-edit-user/new-edit-user.component';
-import {NewEditPlantaComponent} from './components/new-edit-planta/new-edit-planta.component';
+import {EditPlantaComponent} from './components/edit-planta/edit-planta.component';
+import {NewPlantaComponent} from './components/new-planta/new-planta.component';
 
 export const routes: Routes = [
   {
@@ -21,13 +22,13 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'planta/editar/:id',
-    component: NewEditPlantaComponent,
+    path: 'planta/editar/:plantaId/:usuarioId',
+    component: EditPlantaComponent,
     pathMatch: 'full'
   },
   {
-    path: 'planta/nueva/:idUsuario',
-    component: NewEditPlantaComponent,
+    path: 'planta/nueva/:id',
+    component: NewPlantaComponent,
     pathMatch: 'full'
   },
   {
