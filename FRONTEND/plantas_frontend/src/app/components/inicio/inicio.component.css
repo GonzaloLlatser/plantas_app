@@ -4,14 +4,14 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 2em;
-  height: 100vh;
+
 }
 
 .menuOpcionesCuenta {
   background-color: rgba(255, 255, 255, 0.82);
   border-radius: 8px;
   padding: 1em;
-  max-width: 10em;
+  max-width: 11em;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -25,14 +25,14 @@
 .botonCSS {
   background-color: #FFCF50;
   border: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #443627;
   font-family: "Calistoga", serif;
 }
 
 .textContenedor {
   font-family: "Calistoga", serif;
-  color: rgba(48, 63, 11, 0.75);
+  color: rgba(103, 73, 2, 0.75);
   text-align: center;
   font-size: 1.5em;
 }
@@ -68,6 +68,9 @@ p {
   transition: 0.3s ease; /* Transición suave cuando el input está enfocado */
 }
 
+.card{
+height: 38em;
+}
 .card-header{
   background-color: #565601;
 }
@@ -75,10 +78,12 @@ p {
 .card-text{
   font-family: 'Poppins', sans-serif;
   color: #034f05;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 .card-footer-btn{
   background-color: #FFCF50;
+  font-size: 1.2em;
+
 
 }
 

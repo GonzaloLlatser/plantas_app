@@ -3,83 +3,123 @@
     <div class="col col-md-2 col-sm-12">
       <!-- Opciones del Perfil -->
       <div class="flex-column menuOpcionesCuenta">
-        <p>Editar Perfil de Usuario:</p>
-        <button type="submit" class="btn btn-m bt_actualizar m-2" data-bs-toggle="modal"
-                data-bs-target="#actualizarDatosModal">
-          Editar Cuenta
+        <button
+          type="button"
+          class="btn btn-outline-secondary d-flex align-items-center gap-1 w-100"
+          data-bs-toggle="modal"
+          data-bs-target="#actualizarDatosModal">
+          <fa-icon [icon]="faUser"></fa-icon>
+          <span>Cuenta</span>
         </button>
-        <button type="submit" class="btn btn-m m-2 bt_cerrarSesion">Cerrar sesión</button>
-        <button type="submit" class="btn btn-m m-2 bt_eliminar" data-bs-toggle="modal"
-                data-bs-target="#eliminarCuentaModal">
-          Eliminar Cuenta
+        <!-- Botón Cerrar sesión -->
+        <button
+          type="button"
+          class="btn btn-outline-secondary d-flex align-items-center gap-1 mt-1 w-100"
+        >
+          <fa-icon [icon]="faRightFromBracket"></fa-icon>
+
+          <span>Sesión</span>
         </button>
+
+        <!-- Botón Eliminar cuenta -->
+        <button
+          type="button"
+          class="btn btn-outline-secondary d-flex align-items-center gap-1 mt-1 w-100"
+          data-bs-toggle="modal"
+          data-bs-target="#eliminarCuentaModal"
+        >
+          <fa-icon [icon]="faTrashAlt"></fa-icon>
+          <span>Borrar cuenta</span>
+        </button>
+
       </div>
     </div>
-    @if (!plantas) {
-      <div class="col col-md-9 col-sm-6 justify-content-center align-items-center flex-column formularioCSS_clase">
-        <p class="textContenedor">Aún no has agregado tus plantas. No lo dejes para más tarde y ponte a ello.</p>
-        <div class="text-center mt-2">
-          <img
-            [src]="'/images/plantaLogoApp.png'"
-            [alt]="'Icono principal'"
-            class="card-img-bottom w-25">
-        </div>
-        <div class="text-center mt-2">
-          <a [routerLink]="['/planta/nueva/'+id_usuario]" class="btn botonCSS btn-sm">Agrega una nueva planta</a>
-        </div>
-      </div>
-    }
+
     @defer (when plantas) {
-      <div class="col col-md-9 col-sm-6 justify-content-center align-items-center flex-column ">
-        <div class="row d-flex justify-content-center mt-2">
-          @for (planta of plantas; track $index) {
-            <div class="col col-md-4 mb-4">
-              <div class="card shadow-lg border-0 rounded-4 bg-light-subtle">
-                <!-- Header con nombre -->
-                <div class="card-header text-center text-white rounded-top-4">
-                  <h5 class="card-title m-0 fw-bold">{{ planta.nombre }}</h5>
-                </div>
+      @if (plantas.length === 0) {
+        <div class="col col-md-9 col-sm-6 justify-content-center align-items-center flex-column formularioCSS_clase">
+          <p class="textContenedor">Aún no has agregado tus plantas. No lo dejes para más tarde y ponte a ello.</p>
+          <div class="text-center mt-2">
+            <img
+              [src]="'/images/plantaLogoApp.png'"
+              [alt]="'Icono principal'"
+              class="card-img-bottom w-25">
+          </div>
+          <div class="text-center mt-2">
+            <a [routerLink]="['/planta/nueva/'+id_usuario]" class="btn botonCSS btn-sm">¿Nueva planta?</a>
+          </div>
+        </div>
+      } @else {
+        <div class="col col-md-9 col-sm-6 justify-content-center align-items-center flex-column ">
+          <div class="row d-flex justify-content-center mt-2">
+            @for (planta of plantas; track $index) {
+              <div class="col col-md-3 mb-4">
+                <div class="card shadow-lg border-0 rounded-4 bg-light-subtle">
+                  <!-- Header con nombre -->
+                  <div class="card-header text-center text-white rounded-top-4">
+                    <h5 class="card-title m-0 fw-bold">{{ planta.nombre }}</h5>
+                  </div>
 
-                <!-- Imagen -->
-                <div class="text-center mt-3">
-                  <img
-                    [src]="'/images/img_default.png'"
-                    [alt]="'Imagen de ' + planta.nombre"
-                    class="rounded-circle border border-3 border-success-subtle shadow-sm"
-                    style="width: 120px; height: 120px; object-fit: cover;">
-                </div>
+                  <!-- Imagen -->
+                  <div class="text-center mt-3">
+                    <img
+                      [src]="'/images/img_default.png'"
+                      [alt]="'Imagen de ' + planta.nombre"
+                      class="rounded-circle border border-3 border-success-subtle shadow-sm"
+                      style="width: 120px; height: 120px; object-fit: cover;">
+                  </div>
 
-                <!-- Cuerpo con info -->
-                <div class="card-body px-4 py-3">
-                  <p class="card-text mb-1"><strong>🌿 Tipo:</strong> {{ planta.tipoPlanta }}</p>
-                  <p class="card-text mb-1"><strong>📍 Ubicación:</strong> {{ planta.ubicacion | slice:0:10 }} ...</p>
-                  <p class="card-text mb-1"><strong>🗓️ Adquirida:</strong> {{ planta.fechaAdquisicion }}</p>
-                  <p class="card-text mb-1"><strong>✂️ Última poda:</strong> {{ planta.fechaPoda }}</p>
-                  <p class="card-text mb-1"><strong>💧 Último riego:</strong> {{ planta.fechaUltimoRiego }}</p>
-                  <p class="card-text mb-1"><strong>🚿 ¡Próximo riego!: </strong>{{ planta.fechaProximoRiego }}</p>
+                  <!-- Cuerpo con info -->
+                  <div class="card-body px-4 py-3">
+                    <p class="card-text mb-1"><strong>🌿 Tipo:</strong> {{ planta.tipoPlanta }}</p>
+                    <p class="card-text mb-1"><strong>📍 Ubicación:</strong> {{ planta.ubicacion | slice:0:20 }} ...</p>
+                    <p class="card-text mb-1"><strong>🗓️ Adquirida:</strong> {{ planta.fechaAdquisicion.day }}
+                      /{{ planta.fechaAdquisicion.month }}/{{ planta.fechaAdquisicion.year }}</p>
+                    <p class="card-text mb-1"><strong>💧 Último riego:</strong> {{ planta.fechaUltimoRiego.day }}
+                      /{{ planta.fechaUltimoRiego.month }}/{{ planta.fechaUltimoRiego.year }}</p>
+                    <p class="card-text mb-1"><strong>✂️ Última poda:</strong> {{ planta.fechaPoda.day }}
+                      /{{ planta.fechaPoda.month }}/{{ planta.fechaPoda.year }}</p>
+                    <p class="card-text mb-1"><strong>🚿 Próximo riego:</strong> {{ planta.fechaProximoRiego.day }}
+                      /{{ planta.fechaProximoRiego.month }}/{{ planta.fechaProximoRiego.year }}</p>
+                    <!-- Notas con truncado y tooltip -->
+                    <p class="card-text text-dark fst-italic mb-1" [title]="planta.notas">
+                      <strong>📝 Notas:</strong> {{ planta.notas | slice:0:10 }} ...
+                    </p>
+                    <hr>
+                    <p class="card-text mb-1"><strong>📌 Recordatorios:</strong></p>
+                    <!-- Enseña el icono dependiendo de los días restantes -->
+                    <p class="card-text mb-1"
+                       [ngClass]="{'text-danger': calcularDiasRestantes(planta.fechaProximoRiego) <= 3}">
+                      <span *ngIf="calcularDiasRestantes(planta.fechaProximoRiego) <= 0">💧 ¡Es hora de regar!</span>
+                      <span
+                        *ngIf="calcularDiasRestantes(planta.fechaProximoRiego) > 0 && calcularDiasRestantes(planta.fechaProximoRiego) <= 3">⚠ ¡Falta poco para el riego!</span>
+                      <!-- <span *ngIf="calcularDiasRestantes(planta.fechaProximoRiego) > 3">🟢 El riego aún falta.</span>-->
+                    </p>
+                    <p class="card-text mt-2"
+                       [ngClass]="{'text-danger': calcularDiasDesdeUltimaPoda(planta.fechaPoda) >= 30}">
+                      <span *ngIf="calcularDiasDesdeUltimaPoda(planta.fechaPoda) >= 30">✂️ ¡Ya pasó un mes desde la última poda!</span>
+                      <span *ngIf="calcularDiasDesdeUltimaPoda(planta.fechaPoda) >= 15 && calcularDiasDesdeUltimaPoda(planta.fechaPoda) < 30">🕒 Hace poco más de dos semanas</span>
+                      <span *ngIf="calcularDiasDesdeUltimaPoda(planta.fechaPoda) < 15">✅ Poda reciente</span>
+                    </p>
 
-                  <!-- Notas con truncado y tooltip -->
-                  <p class="card-text mt-2 text-dark fst-italic" [title]="planta.notas">
-                    <strong>📝 Notas:</strong> {{ planta.notas | slice:0:50 }}<span
-                    *ngIf="planta.notas.length > 50">...</span>
-                  </p>
-                </div>
+                  </div>
 
-                <!-- Footer con acción -->
-                <div class="card-footer text-center bg-white border-top-0 pb-3">
-                  <a [routerLink]="['/planta/editar', planta.id, id_usuario]"
-                     class="btn btn-sm rounded px-4 card-footer-btn">
-                    Ver Detalles
-                  </a>
+                  <!-- Footer con acción -->
+                  <div class="card-footer text-center bg-white border-top-0 pb-3">
+                    <a [routerLink]="['/planta/editar', planta.id, id_usuario]"
+                       class="btn btn-sm rounded px-4 card-footer-btn">
+                      Detalles
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          }
+            }
+          </div>
+          <div class="text-center mt-2">
+            <a [routerLink]="['/planta/nueva/'+id_usuario]" class="btn botonCSS btn-sm">¿Nueva planta?</a>
+          </div>
         </div>
-        <div class="text-center mt-2">
-          <a [routerLink]="['/planta/nueva/'+id_usuario]" class="btn botonCSS btn-sm">Agrega una nueva planta</a>
-        </div>
-      </div>
+      }
     } @placeholder () {
       <div class="d-flex justify-content-center mt-5"></div>
     }
@@ -219,7 +259,8 @@
             <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
               ❌ Cancelar
             </button>
-            <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal" (click)="eliminarUsuario(usuario.id)">
+            <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal"
+                    (click)="eliminarUsuario(usuario.id)">
               🗑️ Aceptar
             </button>
           </div>

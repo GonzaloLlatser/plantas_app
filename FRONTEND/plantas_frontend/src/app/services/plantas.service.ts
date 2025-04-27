@@ -12,8 +12,8 @@ export class PlantasService {
   private http: HttpClient = inject(HttpClient);
 
   // Define CRUD
-  todasLasPlantasUsuario(id: Number): Observable<PlantasInterface[]> {
-    return this.http.get<PlantasInterface[]>(environment.url_base + 'api/plantas/usuario/' + id);
+  todasLasPlantasUsuario(id: Number): Observable<any> {
+    return this.http.get<any>(environment.url_base + 'api/plantas/usuario/' + id);
   }
 
   crearNuevaPlanta(planta: {
