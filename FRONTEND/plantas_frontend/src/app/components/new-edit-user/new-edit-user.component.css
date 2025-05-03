@@ -4,13 +4,13 @@
   background-position: bottom;
   background-repeat: no-repeat;
   padding: 2em;
-  min-height: 100vh; /* Mínimo ocupa pantalla completa */
-  height: auto;       /* Crece con el contenido */
+  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
 
-.contenedor_login{
+.contenedor_login {
   width: 40em;
   margin-left: 5em;
   text-align: center;
@@ -30,7 +30,6 @@
   width: 30em;
 }
 
-/* Estilos generales para inputs, selects y text */
 .formularioCSS_clase input,
 .formularioCSS_clase select,
 .formularioCSS_clase textarea,
@@ -41,14 +40,13 @@
   background-color: rgb(255, 255, 255);
 }
 
-/* Estilos cuando el input, select o textarea está en foco */
 .formularioCSS_clase input:focus,
 .formularioCSS_clase select:focus,
 .formularioCSS_clase textarea:focus,
 .formularioCSS_clase input[type="email"]:focus,
 .formularioCSS_clase input[type="password"]:focus {
-  background-color: #ffffff; /* Fondo blanco al hacer foco */
-  border-color: rgba(128, 164, 37, 0); /* Borde verde al hacer foco */
+  background-color: #ffffff;
+  border-color: rgba(128, 164, 37, 0);
   box-shadow: 0 0 5px rgba(25, 145, 7, 0);
 }
 

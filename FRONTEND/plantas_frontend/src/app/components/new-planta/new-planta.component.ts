@@ -6,7 +6,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormValidators} from '../../validators/FormValidators';
 import {Location, NgClass, NgIf} from '@angular/common';
 
-
 @Component({
   selector: 'app-new-planta',
   imports: [
@@ -19,6 +18,7 @@ import {Location, NgClass, NgIf} from '@angular/common';
   templateUrl: './new-planta.component.html',
   styleUrl: './new-planta.component.css'
 })
+
 export class NewPlantaComponent {
   @Input("id") id!: number;
   // Define Servicio
@@ -27,7 +27,6 @@ export class NewPlantaComponent {
   private readonly route = inject(ActivatedRoute);
 
   // Define Variables
-
   usuario_id!: number;
   protected mensajeToast: string = "";
   protected iconoToast: string = "";
@@ -71,7 +70,6 @@ export class NewPlantaComponent {
       FormValidators.notOnlyWhiteSpace
     ]],
   });
-
 
   get nombre()
     :
@@ -129,6 +127,7 @@ export class NewPlantaComponent {
 
 // ---------------------------------------------------------
 
+  // Define Metodo -> Crear nueva planta
   crearPlanta() {
     // Validación del Formulario
     if (this.formPlanta.invalid) {
@@ -136,21 +135,17 @@ export class NewPlantaComponent {
       console.log("ERROR ...");
       return;
     }
-
     // Recoge valores del Formulario
     const formValue = this.formPlanta.getRawValue();
-
     // Función para transformar fechas
     const formatFecha = (fecha: { year: number, month: number, day: number }): string => {
       return `${fecha.year}-${String(fecha.month).padStart(2, '0')}-${String(fecha.day).padStart(2, '0')}`;
     };
-
     // Transformación de las fechas
     const fechaAdquisicionFormulario = formatFecha(formValue.fechaAdquisicion);
     const fechaUltimoRiegoFormulario = formatFecha(formValue.fechaUltimoRiego);
     const fechaProximoRiegoFormulario = formatFecha(formValue.fechaProximoRiego);
     const fechaPodaFormulario = formatFecha(formValue.fechaPoda);
-
     // Crear el objeto `plantaData` con las fechas formateadas
     const plantaData = {
       id: formValue.id,
@@ -166,22 +161,19 @@ export class NewPlantaComponent {
       usuario: {
         id: this.id
       }
-
     };
     console.log("Datos de la planta a enviar:", plantaData);
     // Invoca Servicio
     this.plantasService.crearNuevaPlanta(plantaData).subscribe({
       next: (response) => {
         console.log('Respuesta del backend:', response);
-
         if (response.success) {
           this.mostrarMensajeToast(' Planta creada con éxito.', '✅', 'text-bg-success');
           setTimeout(() => {
             this.router.navigateByUrl('inicio/' + this.id);
           }, 2000);
-            } else {
+        } else {
           this.mostrarMensajeToast(' Error al crear la planta.', '❌', 'text-bg-danger');
-
         }
       },
       error: (error) => {
@@ -190,10 +182,12 @@ export class NewPlantaComponent {
     });
   }
 
+  // Define Metodo -> Cambia de vista
   volverInicio(): void {
     this.router.navigateByUrl('inicio/' + this.id);
   }
 
+  // Define Metodo -> Almacena imagenes
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {
@@ -211,12 +205,12 @@ export class NewPlantaComponent {
     }
   }
 
- mostrarMensajeToast(mensaje: string, icono: string, color: string) {
+  // Define Metodo -> Enseña Toast
+  mostrarMensajeToast(mensaje: string, icono: string, color: string) {
     this.mensajeToast = mensaje;
     this.iconoToast = icono;
     this.colorToast = color;
     this.mostrarToast = true;
-
     // Opcional: cerrar automáticamente después de unos segundos
     setTimeout(() => this.mostrarToast = false, 3000);
   }

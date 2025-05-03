@@ -21,10 +21,11 @@ import {Location, NgClass, NgIf} from '@angular/common';
   styleUrl: './edit-planta.component.css'
 })
 export class EditPlantaComponent implements OnInit {
-
+  // Define Constructor
   constructor(private location: Location) {
   }
 
+  // Define Variables de la URL
   @Input("id") id!: number;
   // Define Servicio
   private readonly plantasService = inject(PlantasService);
@@ -33,15 +34,13 @@ export class EditPlantaComponent implements OnInit {
   // Define Variables
   plantaAPI!: any;
   usuario_id!: number;
-
   // Define Toast
   mostrarToast = false;
   mensajeToast = '';
   iconoToast = '';
   colorToast = 'text-bg-success';
 
-
-// ----- Formulario ---------------------------------------
+  // ----- Formulario ---------------------------------------
   formBuilder: FormBuilder = inject(FormBuilder);
   formPlanta: FormGroup = this.formBuilder.group({
     id: [''],
@@ -75,7 +74,6 @@ export class EditPlantaComponent implements OnInit {
       FormValidators.notOnlyWhiteSpace
     ]],
   });
-
 
   get nombre()
     :
@@ -130,9 +128,9 @@ export class EditPlantaComponent implements OnInit {
     any {
     return this.formPlanta.get('notas');
   }
+  // ---------------------------------------------------------
 
-// ---------------------------------------------------------
-
+  // Define Metodo -> Modifica valores de la planta
   modificar() {
     // Validación del Formulario
     if (this.formPlanta.invalid) {
@@ -140,21 +138,17 @@ export class EditPlantaComponent implements OnInit {
       console.log("ERROR ...");
       return;
     }
-
     // Recoge valores del Formulario
     const formValue = this.formPlanta.getRawValue();
-
     // Función para transformar fechas
     const formatFecha = (fecha: { year: number, month: number, day: number }): string => {
       return `${fecha.year}-${String(fecha.month).padStart(2, '0')}-${String(fecha.day).padStart(2, '0')}`;
     };
-
     // Transformación de las fechas
     const fechaAdquisicionFormulario = formatFecha(formValue.fechaAdquisicion);
     const fechaUltimoRiegoFormulario = formatFecha(formValue.fechaUltimoRiego);
     const fechaProximoRiegoFormulario = formatFecha(formValue.fechaProximoRiego);
     const fechaPodaFormulario = formatFecha(formValue.fechaPoda);
-
     // Crear el objeto `plantaData` con las fechas formateadas
     const plantaData = {
       id: formValue.id,
@@ -168,21 +162,16 @@ export class EditPlantaComponent implements OnInit {
       imagenBase64: formValue.imagenBase64,
       notas: formValue.notas,
     };
-
     console.log("Datos de la planta a guardar:", plantaData);
-
     // Invoca Servicio
-
     this.plantasService.guardarPlanta(plantaData).subscribe({
       next: (response) => {
         console.log(response);
-
         if (response.success) {
           this.mostrarMensajeToast(' Planta actualizada.', '✅', 'text-bg-success');
           setTimeout(() => {
             this.location.back();
           }, 2000);
-
         } else {
           this.mostrarMensajeToast(' Error al actualizar la planta.', '❌', 'text-bg-danger');
           setTimeout(() => {
@@ -196,22 +185,18 @@ export class EditPlantaComponent implements OnInit {
     });
   }
 
+  // Define Metodo Init-> Obtiene valores de la planta de la BBDD
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.id = +params['plantaId'];       // ID de la planta
-      this.usuario_id = +params['usuarioId']; // ID del usuario
-
-      console.log("ID planta:", this.id);
-      console.log("ID usuario:", this.usuario_id);
+      // ID de la planta
+      this.id = +params['plantaId'];
+      // ID del usuario
+      this.usuario_id = +params['usuarioId'];
     });
-
 
     this.plantasService.unaPlanta(this.id).subscribe({
       next: (response) => {
         this.plantaAPI = response.planta;
-
-        console.log("ID USUARIO: " + this.usuario_id);
-        console.log(this.plantaAPI);
 
         this.formPlanta.setValue({
           id: this.plantaAPI.id,
@@ -235,6 +220,7 @@ export class EditPlantaComponent implements OnInit {
     });
   }
 
+  // Define Metodo -> Convierte fechas
   arrayToDate(array: number[]): { year: number, month: number, day: number } {
     return {
       year: array[0],
@@ -243,10 +229,12 @@ export class EditPlantaComponent implements OnInit {
     };
   }
 
+  // Define Metodo -> Redirige a la vista inicio
   volverInicio(): void {
     this.router.navigateByUrl('inicio/' + this.usuario_id);
   }
 
+  // Define Metodo -> Elimina planta
   eliminarPlanta() {
     console.log("Eliminar planta con el Id: " + this.id);
 
@@ -254,7 +242,7 @@ export class EditPlantaComponent implements OnInit {
       next: (response) => {
         console.log('✅ Planta eliminada con éxito:');
         alert('✅ Planta eliminada con éxito');
-        // Redirigir
+        // Redirige
         this.router.navigateByUrl('inicio/' + this.usuario_id);
       },
       error: (error) => {
@@ -266,6 +254,7 @@ export class EditPlantaComponent implements OnInit {
     });
   }
 
+  // Define Metodo -> Almacena imagen en la BBDD
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {
@@ -283,14 +272,13 @@ export class EditPlantaComponent implements OnInit {
     }
   }
 
+  // Define Metodo -> Enseña Toast
   mostrarMensajeToast(mensaje: string, icono: string, color: string) {
     this.mensajeToast = mensaje;
     this.iconoToast = icono;
     this.colorToast = color;
     this.mostrarToast = true;
-
     // Opcional: cerrar automáticamente después de unos segundos
     setTimeout(() => this.mostrarToast = false, 3000);
   }
 }
-

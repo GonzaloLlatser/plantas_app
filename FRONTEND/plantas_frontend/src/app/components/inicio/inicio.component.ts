@@ -15,9 +15,7 @@ import {faRightFromBracket, faTrashAlt, faUser} from '@fortawesome/free-solid-sv
   imports: [
     ReactiveFormsModule,
     RouterLink,
-
     FaIconComponent,
-    NgClass,
     NgIf,
   ],
   templateUrl: './inicio.component.html',
@@ -25,6 +23,7 @@ import {faRightFromBracket, faTrashAlt, faUser} from '@fortawesome/free-solid-sv
 })
 
 export class InicioComponent implements OnInit {
+  // Define Variables de la URL
   @Input('id') protected id_usuario!: number;
   // Define Servicio
   private readonly usersService = inject(UsersService);
@@ -37,6 +36,9 @@ export class InicioComponent implements OnInit {
   protected readonly faUser = faUser;
   protected readonly faRightFromBracket = faRightFromBracket;
   protected readonly faTrashAlt = faTrashAlt;
+  // Define Variables
+  protected plantasCargadas: boolean = false;
+
   // ----- Formulario ---------------------------------------
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   formUserEdit: FormGroup = this.formBuilder.group({
@@ -60,7 +62,6 @@ export class InicioComponent implements OnInit {
       FormValidators.notOnlyWhiteSpace
     ]],
   });
-  protected plantasCargadas: boolean = false;
 
   get nombre(): any {
     return this.formUserEdit.get('nombre');
@@ -73,9 +74,9 @@ export class InicioComponent implements OnInit {
   get password(): any {
     return this.formUserEdit.get('password');
   }
-
   // ---------------------------------------------------------
 
+  // Define Metodo Init-> Invoca funciones
   ngOnInit(): void {
     if (this.id_usuario) {
       this.unUsuario();
@@ -83,7 +84,7 @@ export class InicioComponent implements OnInit {
     }
   }
 
-  // Define Metodo -> Obtiene Usuario
+  // Define Metodo -> Obtiene Usuario de la BBDD
   private unUsuario() {
     this.usersService.buscarUsuario(this.id_usuario).subscribe({
       next: data => {
@@ -98,7 +99,7 @@ export class InicioComponent implements OnInit {
     })
   }
 
-  // Define Metodo -> Elimina Usuario
+  // Define Metodo -> Elimina Usuario de la BBDD
   protected eliminarUsuario(id: number) {
     this.usersService.eliminarUsuario(id).subscribe({
       next: data => {
@@ -129,8 +130,6 @@ export class InicioComponent implements OnInit {
       error: err => console.log(err),
       complete: () => {
         console.log("Usuario Modificado");
-
-
       }
     })
   }
@@ -180,7 +179,7 @@ export class InicioComponent implements OnInit {
     });
   }
 
-  // Metodo para calcular los días restantes hasta el próximo riego
+  // Define Metodo -> Calcula los días restantes hasta el próximo riego
   calcularDiasRestantes(fechaProximoRiego: { day: number, month: number, year: number }): number {
     const {day, month, year} = fechaProximoRiego;
     const fechaRiego = new Date(year, month - 1, day); // Recordar que el mes comienza desde 0 en JavaScript
@@ -192,7 +191,7 @@ export class InicioComponent implements OnInit {
     return diferenciaDias;
   }
 
-  // Metodo para calcular los días restantes hasta el próximo poda
+  // Define Metodo -> Calcula los días restantes hasta el próximo poda
   calcularDiasDesdeUltimaPoda(fechaPoda: { day: number, month: number, year: number }) {
     const {year, month, day} = fechaPoda;
     const fecha = new Date(year, month - 1, day);
@@ -204,10 +203,3 @@ export class InicioComponent implements OnInit {
     return dias;
   }
 }
-
-
-
-
-
-
-

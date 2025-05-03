@@ -20,6 +20,7 @@ import {NgClass, NgIf} from '@angular/common';
   ],
   styleUrl: './login-user.component.css'
 })
+
 export class LoginUserComponent {
   // Define Servicio
   private readonly usersService = inject(UsersService);
@@ -29,9 +30,9 @@ export class LoginUserComponent {
   mensajeToast = '';
   iconoToast = '';
   colorToast = 'text-bg-success';
-
-  // Define Cte
+  // Define Variables
   usuario!: UserLoginInterface;
+
   // ----- Formulario ---------------------------------------
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   formUserLogin: FormGroup = this.formBuilder.group({
@@ -59,9 +60,7 @@ export class LoginUserComponent {
 
   // ---------------------------------------------------------
 
-  // Define Metodo para iniciar sesión
-
-
+  // Define Metodo -> Iniciar sesión
   login() {
     // Validación del Formulario
     if (this.formUserLogin.invalid) {
@@ -90,16 +89,13 @@ export class LoginUserComponent {
     });
   }
 
+  // Define Metodo -> Enseña Toast
   mostrarMensajeToast(mensaje: string, icono: string, color: string) {
     this.mensajeToast = mensaje;
     this.iconoToast = icono;
     this.colorToast = color;
     this.mostrarToast = true;
-
     // Opcional: cerrar automáticamente después de unos segundos
     setTimeout(() => this.mostrarToast = false, 3000);
   }
 }
-
-
-

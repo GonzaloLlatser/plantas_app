@@ -1,12 +1,11 @@
 import {AbstractControl, FormControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
 export class FormValidators {
-  // Define funciones estáticas de Validaciones -> Permite exportar las mismas desde los componentes
 
   // Define notOnlyWhiteSpace -> Verifica si escribe únicamente espacios en blanco
   static notOnlyWhiteSpace(control: FormControl): ValidationErrors | null {
     if (control.value != null && control.value.trim().length === 0) {
-      return { notOnlyWhiteSpace: true }; // ❌ Hay un error (solo espacios en blanco)
+      return {notOnlyWhiteSpace: true}; // ❌ Hay un error (solo espacios en blanco)
     }
     return null; // ✅ Es válido
   }

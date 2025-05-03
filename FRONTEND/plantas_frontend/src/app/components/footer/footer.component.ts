@@ -7,8 +7,4 @@ import {Component} from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  accesos = [
-    {nombre: 'Inicio', url: 'inicio'},
-    {nombre: 'Login', url: 'loginUser'},
-  ]
 }

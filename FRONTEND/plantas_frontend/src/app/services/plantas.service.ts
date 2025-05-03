@@ -11,11 +11,12 @@ export class PlantasService {
   // Define Cte Http
   private http: HttpClient = inject(HttpClient);
 
-  // Define CRUD
+  // Define Metodo GET ALL
   todasLasPlantasUsuario(id: Number): Observable<any> {
     return this.http.get<any>(environment.url_base + 'api/plantas/usuario/' + id);
   }
 
+  // Define Metodo POST
   crearNuevaPlanta(planta: {
     id: any;
     nombre: any;
@@ -30,10 +31,12 @@ export class PlantasService {
     return this.http.post<any>(environment.url_base + 'api/plantas/new', planta);
   }
 
+  // Define Metodo GET
   unaPlanta(id: number): Observable<any> {
     return this.http.get<any>(environment.url_base + 'api/plantas/' + id);
   }
 
+  // Define Metodo POST
   guardarPlanta(planta: {
     id: any;
     nombre: any;
@@ -48,6 +51,7 @@ export class PlantasService {
     return this.http.put<any>(environment.url_base + 'api/plantas/modificar/' + planta.id, planta);
   }
 
+  // Define Metodo DELETE
   eliminarPlanta(idPlanta: number) {
     return this.http.delete(environment.url_base + 'api/plantas/' + idPlanta);
   }

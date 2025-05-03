@@ -65,14 +65,13 @@ export class NewEditUserComponent {
 
   // ---------------------------------------------------------
 
-  // Define Metodo para iniciar sesión
+  //   // Define Metodo -> Crear sesión
   crearModificar() {
     // Validación del Formulario
     if (this.formUserLogin.invalid) {
       this.formUserLogin.markAllAsTouched();
       return;
     }
-
     // Obtiene datos del formulario
     const usuario: userNewInterface = this.formUserLogin.getRawValue();
     console.log('Creando sesión con:', usuario.email, usuario.password, usuario.nombre);
@@ -90,18 +89,17 @@ export class NewEditUserComponent {
         }
       },
       error: (error) => {
-
         this.mostrarMensajeToast(' Error al crear la cuenta.', '❌', 'text-bg-danger');
       }
     });
   }
 
+  // Define Metodo -> Enseña Toast
   mostrarMensajeToast(mensaje: string, icono: string, color: string) {
     this.mensajeToast = mensaje;
     this.iconoToast = icono;
     this.colorToast = color;
     this.mostrarToast = true;
-
     // Opcional: cerrar automáticamente después de unos segundos
     setTimeout(() => this.mostrarToast = false, 3000);
   }

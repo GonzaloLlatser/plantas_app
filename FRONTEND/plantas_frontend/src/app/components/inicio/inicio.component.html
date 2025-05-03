@@ -11,15 +11,6 @@
           <fa-icon [icon]="faUser"></fa-icon>
           <span>Cuenta</span>
         </button>
-        <!-- Botón Cerrar sesión -->
-        <!--        <button-->
-        <!--          type="button"-->
-        <!--          class="btn btn-outline-secondary d-flex align-items-center gap-1 mt-1 w-100"-->
-        <!--        >-->
-        <!--          <fa-icon [icon]="faRightFromBracket"></fa-icon>-->
-        <!--          <span>Sesión</span>-->
-        <!--        </button>-->
-
         <!-- Botón Eliminar cuenta -->
         <button
           type="button"
@@ -80,7 +71,6 @@
                   <!-- Cuerpo con info -->
                   <div class="card-body mt-1">
                     <!--                    <p class="card-text mb-1"><strong>🌿 Tipo:</strong> {{ planta.tipoPlanta | slice:0:10 }} ...</p>-->
-
                     <!--                    <p class="card-text mb-1"><strong>📍 Ubicación:</strong> {{ planta.ubicacion | slice:0:20 }} ...</p>-->
                     <!--                    <p class="card-text mb-1"><strong>🗓️ Adquirida:</strong> {{ planta.fechaAdquisicion.day }}/{{ planta.fechaAdquisicion.month }}/{{ planta.fechaAdquisicion.year }}</p>-->
                     <!--                    <p class="card-text mb-1"><strong>💧 Último riego:</strong> {{ planta.fechaUltimoRiego.day }}/{{ planta.fechaUltimoRiego.month }}/{{ planta.fechaUltimoRiego.year }}</p>-->
@@ -124,7 +114,6 @@
          aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content modalEstilos shadow-lg border-0 rounded-4">
-
           <!-- Header -->
           <div class="modal-header bg-primary text-white rounded-top">
             <h1 class="modal-title fs-4 fw-bold" id="actualizarDatosModalLabel">
@@ -133,7 +122,6 @@
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Cerrar"></button>
           </div>
-
           <!-- Body -->
           <div class="modal-body px-5 py-4">
             <form [formGroup]="formUserEdit" (ngSubmit)="actualizarCuenta()">
@@ -183,7 +171,6 @@
                   }
                 }
               </div>
-
               <!-- Password -->
               <div class="form-floating mb-4">
                 <input type="password" formControlName="password" class="form-control" id="password"
@@ -204,7 +191,6 @@
                   }
                 }
               </div>
-
               <!-- Botón Guardar -->
               <div class="text-end">
                 <button type="submit" class="btn btn-success px-4 but" data-bs-dismiss="modal">
@@ -213,7 +199,6 @@
               </div>
             </form>
           </div>
-
           <!-- Footer -->
           <div class="modal-footer bg-light rounded-bottom d-flex justify-content-between">
             <small class="text-muted">Puedes cerrar sin guardar si cambiaste de opinión 😌</small>

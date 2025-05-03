@@ -1,5 +1,5 @@
 <div class="container-fluid inicio-background flex ">
-    <h1 class="titulo">¿Hacemos unos cambios? </h1>
+  <h1 class="titulo">¿Hacemos unos cambios? </h1>
   <div class="container mt-3">
     <!-- Formulario-->
     <div class="col-md-6 float-end formularioCSS_clase">
@@ -13,8 +13,6 @@
             id="nombre"
             placeholder="Nombre de tu planta">
           <label for="nombre">🌿 Nombre: Dale un apodo con personalidad</label>
-
-
           <!--Validación-->
           @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
             <!-- Alerta para 'required' -->
@@ -49,7 +47,6 @@
             }
           }
         </div>
-
         <!-- Campo fechaAdquisicion-->
         <div class="form-floating mt-3">
           <input
@@ -62,7 +59,6 @@
             #dpAdquisicion="ngbDatepicker"
             (click)="dpAdquisicion.toggle()">
           <label for="fechaAdquisicion">📅 Fecha de adopción: ¿Cuándo te conquistó?</label>
-
           <!-- Validación-->
           @if (fechaAdquisicionFormulario.invalid && (fechaAdquisicionFormulario.dirty || fechaAdquisicionFormulario.touched)) {
             <!-- Alerta para 'required' -->
@@ -73,7 +69,6 @@
             }
           }
         </div>
-
         <!-- Campo fechaUltimoRiego-->
         <div class="form-floating mt-3">
           <input
@@ -86,7 +81,6 @@
             #dpUltimoRiego="ngbDatepicker"
             (click)="dpUltimoRiego.toggle()">
           <label for="fechaUltimoRiego">💧 Último riego: ¡Ya es hora de hidratarla o ya fue?</label>
-
           <!-- Validación-->
           @if (fechaUltimoRiego.invalid && (fechaUltimoRiego.dirty || fechaUltimoRiego.touched)) {
             <!-- Alerta para 'required' -->
@@ -97,7 +91,6 @@
             }
           }
         </div>
-
         <!-- Campo fechaPoda-->
         <div class="form-floating mt-3">
           <input
@@ -110,7 +103,6 @@
             #dpPoda="ngbDatepicker"
             (click)="dpPoda.toggle()">
           <label for="fechaPoda">✂️ Última poda: ¿Ya pasó por la peluquería?</label>
-
           <!-- Validación-->
           @if (fechaPoda.invalid && (fechaPoda.dirty || fechaPoda.touched)) {
             <!-- Alerta para 'required' -->
@@ -121,7 +113,6 @@
             }
           }
         </div>
-
         <!-- Campo fechaProximoRiego-->
         <div class="form-floating mt-3">
           <input
@@ -134,7 +125,6 @@
             #dpProximoRiego="ngbDatepicker"
             (click)="dpProximoRiego.toggle()">
           <label for="fechaProximoRiego">🗓️ Próximo riego: Agendalo para que no se te pase</label>
-
           <!-- Validación-->
           @if (fechaProximoRiego.invalid && (fechaProximoRiego.dirty || fechaProximoRiego.touched)) {
             <!-- Alerta para 'required' -->
@@ -145,7 +135,6 @@
             }
           }
         </div>
-
         <!-- Campo ubicacion-->
         <div class="form-floating mt-3">
           <input
@@ -155,7 +144,6 @@
             id="ubicacion"
             placeholder="Ej: Balcón, Cocina, Estudio...">
           <label for="ubicacion">📍 Ubicación: ¿Dónde vive tu plantita?</label>
-
           <!--Validación-->
           @if (ubicacion.invalid && (ubicacion.dirty || ubicacion.touched)) {
             <!-- Alerta para 'required' -->
@@ -190,7 +178,6 @@
             }
           }
         </div>
-
         <!-- Campo tipoPlanta-->
         <div class="form-floating mt-3">
           <input
@@ -234,7 +221,6 @@
             }
           }
         </div>
-
         <!-- Input para imagen -->
         <div class="form-floating mt-3">
           <input
@@ -244,7 +230,6 @@
           >
           <label for="notas">📷 Foto: Una imagén sonriente de tu planta</label>
         </div>
-
         <!-- Campo notas-->
         <div class="form-floating mt-3">
           <input
@@ -291,16 +276,17 @@
         <!-- Botónes -->
         <div class="mt-3">
           <button type="submit" class="btn btn-m btn-success">Guardar</button>
-            <button type="button" class="btn btn-m float-end btn-danger" data-bs-toggle="modal"
-                    data-bs-target="#eliminarPlantaModal">
-              Eliminar
-            </button>
+          <button type="button" class="btn btn-m float-end btn-danger" data-bs-toggle="modal"
+                  data-bs-target="#eliminarPlantaModal">
+            Eliminar
+          </button>
           <button type="button" class="btn btn-secondary float-end" (click)="volverInicio()">¿Luego? VOLVER</button>
         </div>
       </form>
       <!-- Fin del Formulario -->
     </div>
   </div>
+
   <!-- Modal -->
   <div class="modal fade" [attr.id]="'eliminarPlantaModal'"
        tabindex="-1"
@@ -331,7 +317,7 @@
       </div>
     </div>
   </div>
-  <!--Finaliza Modal-->
+
   <!-- Toast centrado y dinámico -->
   <div class="toast-container position-fixed top-50 start-50 translate-middle p-3" *ngIf="mostrarToast">
     <div class="toast align-items-center border-0 show" [ngClass]="colorToast" role="alert">
@@ -341,5 +327,6 @@
         </div>
       </div>
     </div>
+  </div>
 </div>
 

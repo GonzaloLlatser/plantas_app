@@ -4,8 +4,8 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 2em;
-  min-height: 100vh; /* Mínimo ocupa pantalla completa */
-  height: auto;       /* Crece con el contenido */
+  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -16,7 +16,6 @@
   color: #283d06;
 }
 
-/* Estilos generales para inputs, selects y text */
 .formularioCSS_clase input,
 .formularioCSS_clase select,
 .formularioCSS_clase textarea
