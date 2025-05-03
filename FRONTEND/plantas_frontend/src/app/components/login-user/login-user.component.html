@@ -89,19 +89,15 @@
     </div>
   </div>
 
-
-  <!-- Toast-->
-  @if (toastShow) {
-    <ngb-toast
-      [className]="'toast position-fixed top-50 start-50 translate-middle-x p-3 text-light text-center shadow rounded-4 '+ toastColor"
-      [autohide]="true"
-      [delay]="2000">
-      <div class="toast-body">
-        <strong class="me-auto">
-          {{ toastMensaje }}
-        </strong>
+  <!-- Toast centrado y dinámico -->
+  <div class="toast-container position-fixed top-50 start-50 translate-middle p-3" *ngIf="mostrarToast">
+    <div class="toast align-items-center border-0 show" [ngClass]="colorToast" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">
+          {{ iconoToast }} {{ mensajeToast }}
+        </div>
       </div>
-    </ngb-toast>
-  }
+    </div>
+  </div>
 </div>
 

@@ -12,14 +12,13 @@
           <span>Cuenta</span>
         </button>
         <!-- Botón Cerrar sesión -->
-        <button
-          type="button"
-          class="btn btn-outline-secondary d-flex align-items-center gap-1 mt-1 w-100"
-        >
-          <fa-icon [icon]="faRightFromBracket"></fa-icon>
-
-          <span>Sesión</span>
-        </button>
+        <!--        <button-->
+        <!--          type="button"-->
+        <!--          class="btn btn-outline-secondary d-flex align-items-center gap-1 mt-1 w-100"-->
+        <!--        >-->
+        <!--          <fa-icon [icon]="faRightFromBracket"></fa-icon>-->
+        <!--          <span>Sesión</span>-->
+        <!--        </button>-->
 
         <!-- Botón Eliminar cuenta -->
         <button
@@ -31,7 +30,9 @@
           <fa-icon [icon]="faTrashAlt"></fa-icon>
           <span>Borrar cuenta</span>
         </button>
-
+        <div class="text-center mt-2">
+          <a [routerLink]="['/planta/nueva/'+id_usuario]" class="btn botonCSS btn-sm">¿Nueva planta?</a>
+        </div>
       </div>
     </div>
 
@@ -50,73 +51,65 @@
           </div>
         </div>
       } @else {
-        <div class="col col-md-9 col-sm-6 justify-content-center align-items-center flex-column ">
-          <div class="row d-flex justify-content-center mt-2">
+        <div class="col col-md-9 col-sm-6 justify-content-center align-items-center">
+          <div class="row">
             @for (planta of plantas; track $index) {
-              <div class="col col-md-3 mb-4">
-                <div class="card shadow-lg border-0 rounded-4 bg-light-subtle">
+              <div class="col col-md-3 mb-4" style="width: 15em">
+                <div class="card shadow-lg border-0 rounded-4" style="height: 15em"
+                     [routerLink]="['/planta/editar', planta.id, id_usuario]">
                   <!-- Header con nombre -->
                   <div class="card-header text-center text-white rounded-top-4">
                     <h5 class="card-title m-0 fw-bold">{{ planta.nombre }}</h5>
                   </div>
-
                   <!-- Imagen -->
                   <div class="text-center mt-3">
-                    <img
-                      [src]="'/images/img_default.png'"
-                      [alt]="'Imagen de ' + planta.nombre"
-                      class="rounded-circle border border-3 border-success-subtle shadow-sm"
-                      style="width: 120px; height: 120px; object-fit: cover;">
+                    @if (planta.rutaImagen == null) {
+                      <img
+                        [src]="'/images/img_default.png'"
+                        [alt]="'Imagen de ' + planta.nombre"
+                        class="rounded-circle shadow-sm imagen_card"
+                        style="width: 120px; height: 120px; object-fit: cover;">
+                    } @else {
+                      <img
+                        [src]="'http://localhost' + planta.rutaImagen"
+                        class="rounded-circle shadow-sm imagen_card"
+                        style="width: 120px; height: 120px; object-fit: cover;">
+                    }
                   </div>
 
                   <!-- Cuerpo con info -->
-                  <div class="card-body px-4 py-3">
-                    <p class="card-text mb-1"><strong>🌿 Tipo:</strong> {{ planta.tipoPlanta }}</p>
-                    <p class="card-text mb-1"><strong>📍 Ubicación:</strong> {{ planta.ubicacion | slice:0:20 }} ...</p>
-                    <p class="card-text mb-1"><strong>🗓️ Adquirida:</strong> {{ planta.fechaAdquisicion.day }}
-                      /{{ planta.fechaAdquisicion.month }}/{{ planta.fechaAdquisicion.year }}</p>
-                    <p class="card-text mb-1"><strong>💧 Último riego:</strong> {{ planta.fechaUltimoRiego.day }}
-                      /{{ planta.fechaUltimoRiego.month }}/{{ planta.fechaUltimoRiego.year }}</p>
-                    <p class="card-text mb-1"><strong>✂️ Última poda:</strong> {{ planta.fechaPoda.day }}
-                      /{{ planta.fechaPoda.month }}/{{ planta.fechaPoda.year }}</p>
-                    <p class="card-text mb-1"><strong>🚿 Próximo riego:</strong> {{ planta.fechaProximoRiego.day }}
-                      /{{ planta.fechaProximoRiego.month }}/{{ planta.fechaProximoRiego.year }}</p>
+                  <div class="card-body mt-1">
+                    <!--                    <p class="card-text mb-1"><strong>🌿 Tipo:</strong> {{ planta.tipoPlanta | slice:0:10 }} ...</p>-->
+
+                    <!--                    <p class="card-text mb-1"><strong>📍 Ubicación:</strong> {{ planta.ubicacion | slice:0:20 }} ...</p>-->
+                    <!--                    <p class="card-text mb-1"><strong>🗓️ Adquirida:</strong> {{ planta.fechaAdquisicion.day }}/{{ planta.fechaAdquisicion.month }}/{{ planta.fechaAdquisicion.year }}</p>-->
+                    <!--                    <p class="card-text mb-1"><strong>💧 Último riego:</strong> {{ planta.fechaUltimoRiego.day }}/{{ planta.fechaUltimoRiego.month }}/{{ planta.fechaUltimoRiego.year }}</p>-->
+                    <!--                    <p class="card-text mb-1"><strong>✂️ Última poda:</strong> {{ planta.fechaPoda.day }}/{{ planta.fechaPoda.month }}/{{ planta.fechaPoda.year }}</p>-->
+                    <!--                    <p class="card-text mb-1"><strong>🚿 Próximo riego:</strong> {{ planta.fechaProximoRiego.day }}/{{ planta.fechaProximoRiego.month }}/{{ planta.fechaProximoRiego.year }}</p>-->
                     <!-- Notas con truncado y tooltip -->
-                    <p class="card-text text-dark fst-italic mb-1" [title]="planta.notas">
-                      <strong>📝 Notas:</strong> {{ planta.notas | slice:0:10 }} ...
-                    </p>
-                    <hr>
-                    <p class="card-text mb-1"><strong>📌 Recordatorios:</strong></p>
+                    <!--                    <p class="card-text text-dark fst-italic mb-1" [title]="planta.notas">-->
+                    <!--                      <strong>📝 Notas:</strong> {{ planta.notas | slice:0:10 }} ...-->
+                    <!--                    </p>-->
+                    <!--                    <p class="card-text"><strong>Recordatorios:</strong></p>-->
                     <!-- Enseña el icono dependiendo de los días restantes -->
-                    <p class="card-text mb-1"
-                       [ngClass]="{'text-danger': calcularDiasRestantes(planta.fechaProximoRiego) <= 3}">
+                    <!-- Mensaje de Riego -->
+                    <p class="card-text text-center mt-3">
                       <span *ngIf="calcularDiasRestantes(planta.fechaProximoRiego) <= 0">💧 ¡Es hora de regar!</span>
                       <span
                         *ngIf="calcularDiasRestantes(planta.fechaProximoRiego) > 0 && calcularDiasRestantes(planta.fechaProximoRiego) <= 3">⚠ ¡Falta poco para el riego!</span>
-                      <!-- <span *ngIf="calcularDiasRestantes(planta.fechaProximoRiego) > 3">🟢 El riego aún falta.</span>-->
                     </p>
-                    <p class="card-text mt-2"
-                       [ngClass]="{'text-danger': calcularDiasDesdeUltimaPoda(planta.fechaPoda) >= 30}">
-                      <span *ngIf="calcularDiasDesdeUltimaPoda(planta.fechaPoda) >= 30">✂️ ¡Ya pasó un mes desde la última poda!</span>
-                      <span *ngIf="calcularDiasDesdeUltimaPoda(planta.fechaPoda) >= 15 && calcularDiasDesdeUltimaPoda(planta.fechaPoda) < 30">🕒 Hace poco más de dos semanas</span>
+                    <!-- Mensaje de Poda (solo si no hay urgencia de riego) -->
+                    <p class="card-text text-center"
+                       *ngIf="calcularDiasRestantes(planta.fechaProximoRiego) > 3">
+                      <span *ngIf="calcularDiasDesdeUltimaPoda(planta.fechaPoda) >= 30">✂️ ¡Ya pasó un mes!</span>
+                      <span
+                        *ngIf="calcularDiasDesdeUltimaPoda(planta.fechaPoda) >= 15 && calcularDiasDesdeUltimaPoda(planta.fechaPoda) < 30">🕒 Hace poco más de dos semanas</span>
                       <span *ngIf="calcularDiasDesdeUltimaPoda(planta.fechaPoda) < 15">✅ Poda reciente</span>
                     </p>
-
-                  </div>
-
-                  <!-- Footer con acción -->
-                  <div class="card-footer text-center bg-white border-top-0 pb-3">
-                    <a [routerLink]="['/planta/editar', planta.id, id_usuario]"
-                       class="btn btn-sm rounded px-4 card-footer-btn">
-                      Detalles
-                    </a>
                   </div>
                 </div>
               </div>
             }
-          </div>
-          <div class="text-center mt-2">
-            <a [routerLink]="['/planta/nueva/'+id_usuario]" class="btn botonCSS btn-sm">¿Nueva planta?</a>
           </div>
         </div>
       }
@@ -214,7 +207,7 @@
 
               <!-- Botón Guardar -->
               <div class="text-end">
-                <button type="submit" class="btn btn-success px-4 but">
+                <button type="submit" class="btn btn-success px-4 but" data-bs-dismiss="modal">
                   💾 Guardar cambios
                 </button>
               </div>

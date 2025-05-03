@@ -6,17 +6,16 @@ import {FormValidators} from '../../validators/FormValidators';
 import {NgbInputDatepicker} from '@ng-bootstrap/ng-bootstrap';
 
 
-
-
-
-import {Location} from '@angular/common';
+import {Location, NgClass, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-edit-planta',
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    NgbInputDatepicker
+    NgbInputDatepicker,
+    NgIf,
+    NgClass
   ],
   templateUrl: './edit-planta.component.html',
   styleUrl: './edit-planta.component.css'
@@ -26,7 +25,6 @@ export class EditPlantaComponent implements OnInit {
   constructor(private location: Location) {
   }
 
-
   @Input("id") id!: number;
   // Define Servicio
   private readonly plantasService = inject(PlantasService);
@@ -35,6 +33,12 @@ export class EditPlantaComponent implements OnInit {
   // Define Variables
   plantaAPI!: any;
   usuario_id!: number;
+
+  // Define Toast
+  mostrarToast = false;
+  mensajeToast = '';
+  iconoToast = '';
+  colorToast = 'text-bg-success';
 
 
 // ----- Formulario ---------------------------------------
@@ -63,6 +67,7 @@ export class EditPlantaComponent implements OnInit {
       Validators.minLength(2),
       FormValidators.notOnlyWhiteSpace
     ]],
+    imagenBase64: [''],
     notas: ['', [
       Validators.required,
       Validators.maxLength(300),
@@ -114,6 +119,12 @@ export class EditPlantaComponent implements OnInit {
     return this.formPlanta.get('tipoPlanta');
   }
 
+  get imagenBase64()
+    :
+    any {
+    return this.formPlanta.get('imagenBase64');
+  }
+
   get notas()
     :
     any {
@@ -154,6 +165,7 @@ export class EditPlantaComponent implements OnInit {
       fechaPoda: fechaPodaFormulario,
       ubicacion: formValue.ubicacion,
       tipoPlanta: formValue.tipoPlanta,
+      imagenBase64: formValue.imagenBase64,
       notas: formValue.notas,
     };
 
@@ -166,17 +178,20 @@ export class EditPlantaComponent implements OnInit {
         console.log(response);
 
         if (response.success) {
-          console.log('✅ Planta guardada con éxito:', response.message);
-          // Redirigir
-          this.location.back();
+          this.mostrarMensajeToast(' Planta actualizada.', '✅', 'text-bg-success');
+          setTimeout(() => {
+            this.location.back();
+          }, 2000);
+
         } else {
-          console.warn('⚠️ No se pudo guardar la planta:', response.message);
-          alert(response.message);
+          this.mostrarMensajeToast(' Error al actualizar la planta.', '❌', 'text-bg-danger');
+          setTimeout(() => {
+            this.location.back();
+          }, 2000);
         }
       },
       error: (error) => {
-        console.error('❌ Error al guardar la planta:', error);
-        alert('Error al guardar la planta');
+        this.mostrarMensajeToast(' Error al actualizar la planta.', '❌', 'text-bg-danger');
       }
     });
   }
@@ -195,7 +210,7 @@ export class EditPlantaComponent implements OnInit {
       next: (response) => {
         this.plantaAPI = response.planta;
 
-        console.log("ID USUARIO: "+ this.usuario_id);
+        console.log("ID USUARIO: " + this.usuario_id);
         console.log(this.plantaAPI);
 
         this.formPlanta.setValue({
@@ -207,6 +222,7 @@ export class EditPlantaComponent implements OnInit {
           fechaPoda: this.arrayToDate(this.plantaAPI.fechaPoda),
           ubicacion: this.plantaAPI.ubicacion,
           tipoPlanta: this.plantaAPI.tipoPlanta,
+          imagenBase64: this.plantaAPI.imagenBase64,
           notas: this.plantaAPI.notas,
         });
       },
@@ -229,7 +245,6 @@ export class EditPlantaComponent implements OnInit {
 
   volverInicio(): void {
     this.router.navigateByUrl('inicio/' + this.usuario_id);
-
   }
 
   eliminarPlanta() {
@@ -249,6 +264,33 @@ export class EditPlantaComponent implements OnInit {
         console.log('✅ Error del backend');
       }
     });
+  }
+
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64 = reader.result as string;
+        // Quitamos el encabezado tipo 'data:image/jpeg;base64,...'
+        const base64Clean = base64.split(',')[1];
+        this.formPlanta.patchValue({
+          imagenBase64: base64Clean
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  mostrarMensajeToast(mensaje: string, icono: string, color: string) {
+    this.mensajeToast = mensaje;
+    this.iconoToast = icono;
+    this.colorToast = color;
+    this.mostrarToast = true;
+
+    // Opcional: cerrar automáticamente después de unos segundos
+    setTimeout(() => this.mostrarToast = false, 3000);
   }
 }
 

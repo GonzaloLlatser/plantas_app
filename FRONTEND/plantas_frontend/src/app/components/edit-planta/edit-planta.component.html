@@ -235,6 +235,16 @@
           }
         </div>
 
+        <!-- Input para imagen -->
+        <div class="form-floating mt-3">
+          <input
+            type="file" (change)="onFileChange($event)"
+            placeholder="Alguna foto bonita"
+            class="form-control"
+          >
+          <label for="notas">📷 Foto: Una imagén sonriente de tu planta</label>
+        </div>
+
         <!-- Campo notas-->
         <div class="form-floating mt-3">
           <input
@@ -322,5 +332,14 @@
     </div>
   </div>
   <!--Finaliza Modal-->
+  <!-- Toast centrado y dinámico -->
+  <div class="toast-container position-fixed top-50 start-50 translate-middle p-3" *ngIf="mostrarToast">
+    <div class="toast align-items-center border-0 show" [ngClass]="colorToast" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">
+          {{ iconoToast }} {{ mensajeToast }}
+        </div>
+      </div>
+    </div>
 </div>
 

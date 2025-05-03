@@ -30,17 +30,19 @@ public class AuthController {
 
     if (user.isPresent()) {
       if (user.get().getPassword().equals(usuario.getPassword())) {
-
         response.put("success", true);
-        response.put("message", "Usuario logueado correctamente");
+        response.put("message", "Login exitoso");
         response.put("id", user.get().getId());
-        return ResponseEntity.ok(response); // Código 200
+        return ResponseEntity.ok(response);
+      } else {
+        response.put("success", false);
+        response.put("message", "Contraseña incorrecta");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
       }
-
+    } else {
       response.put("success", false);
-      response.put("message", "Usuario NO logueado");
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response); // Código 401
+      response.put("message", "Usuario no encontrado");
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
-    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
   }
 }

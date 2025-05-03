@@ -5,6 +5,7 @@ import {UserLoginInterface} from '../../common/user-login-interface';
 import {Router, RouterLink} from '@angular/router';
 import {FormValidators} from '../../validators/FormValidators';
 import {NgbToast} from '@ng-bootstrap/ng-bootstrap';
+import {NgClass, NgIf} from '@angular/common';
 
 
 @Component({
@@ -14,7 +15,8 @@ import {NgbToast} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     ReactiveFormsModule,
     RouterLink,
-    NgbToast
+    NgIf,
+    NgClass
   ],
   styleUrl: './login-user.component.css'
 })
@@ -23,9 +25,10 @@ export class LoginUserComponent {
   private readonly usersService = inject(UsersService);
   private readonly router = inject(Router);
   // Define Toast
-  toastShow = false;
-  toastMensaje = "";
-  toastColor = "";
+  mostrarToast = false;
+  mensajeToast = '';
+  iconoToast = '';
+  colorToast = 'text-bg-success';
 
   // Define Cte
   usuario!: UserLoginInterface;
@@ -73,15 +76,28 @@ export class LoginUserComponent {
       next: (response) => {
         console.log('Respuesta del backend:', response);
         if (response.success) {
-          this.router.navigateByUrl('inicio/' + response.id); // Redirigir a inicio
+          this.mostrarMensajeToast(' Cuenta iniciada con éxito.', '✅', 'text-bg-success');
+          setTimeout(() => {
+            this.router.navigateByUrl('inicio/' + response.id);
+          }, 2000);
         } else {
-          alert("⚠️ Ups! Revisa los datos. Intentalo de nuevo.");
+          this.mostrarMensajeToast(' Error al iniciar la cuenta.', '❌', 'text-bg-danger');
         }
       },
       error: (error) => {
-        console.error('❌ Error en el login:', error);
+        this.mostrarMensajeToast(' Error al iniciar la cuenta.', '❌', 'text-bg-danger');
       }
     });
+  }
+
+  mostrarMensajeToast(mensaje: string, icono: string, color: string) {
+    this.mensajeToast = mensaje;
+    this.iconoToast = icono;
+    this.colorToast = color;
+    this.mostrarToast = true;
+
+    // Opcional: cerrar automáticamente después de unos segundos
+    setTimeout(() => this.mostrarToast = false, 3000);
   }
 }
 

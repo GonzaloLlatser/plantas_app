@@ -4,12 +4,15 @@ import {Router, RouterLink} from '@angular/router';
 import {UsersService} from '../../services/users.service';
 import {FormValidators} from '../../validators/FormValidators';
 import {userNewInterface} from '../../common/user-new-interface';
+import {NgClass, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-new-edit-user',
   imports: [
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    NgIf,
+    NgClass
   ],
   templateUrl: './new-edit-user.component.html',
   styleUrl: './new-edit-user.component.css'
@@ -20,6 +23,11 @@ export class NewEditUserComponent {
   private readonly router = inject(Router);
   // Define Cte
   usuario!: userNewInterface;
+
+  mostrarToast = false;
+  mensajeToast = '';
+  iconoToast = '';
+  colorToast = 'text-bg-success';
   // ----- Formulario ---------------------------------------
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   formUserLogin: FormGroup = this.formBuilder.group({
@@ -72,20 +80,29 @@ export class NewEditUserComponent {
     this.usersService.usuarioCrear(usuario).subscribe({
       next: (response) => {
         console.log('Respuesta del backend:', response);
-
         if (response.success) {
-          console.log('✅ Cuenta creada:', response.message);
-          alert('✅ Cuenta creada con éxito');
-          this.router.navigateByUrl('inicio/'+ response.id); // Redirigir a inicio
+          this.mostrarMensajeToast(' Cuenta creada con éxito.', '✅', 'text-bg-success');
+          setTimeout(() => {
+            this.router.navigateByUrl('inicio/' + response.id);
+          }, 2000);
         } else {
-          console.warn('⚠️ No se pudo crear la cuenta:', response.message);
-          alert(response.message);
+          this.mostrarMensajeToast(' Error al crear la cuenta.', '❌', 'text-bg-danger');
         }
       },
       error: (error) => {
-        console.error('❌ Error al crear la cuenta:', error);
-        alert('Error al crear la cuenta');
+
+        this.mostrarMensajeToast(' Error al crear la cuenta.', '❌', 'text-bg-danger');
       }
     });
+  }
+
+  mostrarMensajeToast(mensaje: string, icono: string, color: string) {
+    this.mensajeToast = mensaje;
+    this.iconoToast = icono;
+    this.colorToast = color;
+    this.mostrarToast = true;
+
+    // Opcional: cerrar automáticamente después de unos segundos
+    setTimeout(() => this.mostrarToast = false, 3000);
   }
 }

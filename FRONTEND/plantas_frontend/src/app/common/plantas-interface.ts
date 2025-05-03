@@ -9,6 +9,8 @@ export interface PlantasInterface {
   tipoPlanta: string
   notas: string
   usuario?: { id: number }
+  imagenBase64: string
+  rutaImagen: string
 }
 
 export interface RespuestaInterface {
@@ -27,6 +29,8 @@ export interface PlantasInterfaceByBackend {
   tipoPlanta: string;
   notas: string;
   usuario?: { id: number };
+  imagenBase64: string
+  rutaImagen: string
 }
 
 

@@ -3,127 +3,137 @@
     <h1 class="titulo"> Plantapp</h1>
     <h2 class="textVistaCSS"> Regístrate, ¿Que esperas? </h2>
     <div class="formularioCSS_clase">
-        <!-- Formulario-->
-          <form [formGroup]="formUserLogin" (ngSubmit)="crearModificar()">
-            <!-- Campo Nombre-->
-            <div class="form-floating">
-              <input type="nombre" formControlName="nombre" class="form-control" id="nombre" placeholder="nombre">
-              <label for="nombre">👤 Nombre</label>
-              <!--Validación-->
-              @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
-                <!-- Alerta para 'required' -->
-                @if (nombre.errors?.['required']) {
-                  <div class="alert alert-danger" role="alert">
-                    ¡Debes indicar un nombre!
-                  </div>
-                }
-                <!-- Alerta para 'maxLength' -->
-                @if (nombre.errors?.['maxlength']) {
-                  <div class="alert alert-warning" role="alert">
-                    ¡No superes los 50 caracteres!
-                  </div>
-                }
-                <!-- Alerta para 'minLength' -->
-                @if (nombre.errors?.['minlength']) {
-                  <div class="alert alert-warning" role="alert">
-                    ¡Escribe tu nombre completo!
-                  </div>
-                }
-                <!-- Alerta para '@nombre' -->
-                @if (nombre.errors?.['nombre']) {
-                  <div class="alert alert-warning" role="alert">
-                    ¡¿Estas seguro? Eso no parece un nombre!
-                  </div>
-                }
-                <!-- Alerta para 'notOnlyWhiteSpace' -->
-                @if (nombre.errors?.['notOnlyWhiteSpace']) {
-                  <div class="alert alert-danger" role="alert">
-                    ¿Estás seguro de que tu nombre tiene solo espacios en blanco?
-                  </div>
-                }
-              }
-            </div>
-            <!-- Campo Email-->
-            <div class="form-floating">
-              <input type="email" formControlName="email" class="form-control" id="email" placeholder="email">
-              <label for="email">📧 Email</label>
-              <!--Validación-->
-              @if (email.invalid && (email.dirty || email.touched)) {
-                <!-- Alerta para 'required' -->
-                @if (email.errors?.['required']) {
-                  <div class="alert alert-danger" role="alert">
-                    ¡Debes indicar un email!
-                  </div>
-                }
-                <!-- Alerta para 'maxLength' -->
-                @if (email.errors?.['maxlength']) {
-                  <div class="alert alert-warning" role="alert">
-                    ¡No superes los 50 caracteres!
-                  </div>
-                }
-                <!-- Alerta para 'minLength' -->
-                @if (email.errors?.['minlength']) {
-                  <div class="alert alert-warning" role="alert">
-                    ¡Escribe tu correo completo!
-                  </div>
-                }
-                <!-- Alerta para '@correo' -->
-                @if (email.errors?.['email']) {
-                  <div class="alert alert-warning" role="alert">
-                    ¡¿Estas seguro? Eso no parece un correo!
-                  </div>
-                }
-                <!-- Alerta para 'notOnlyWhiteSpace' -->
-                @if (email.errors?.['notOnlyWhiteSpace']) {
-                  <div class="alert alert-danger" role="alert">
-                    ¿Estás seguro de que tu email tiene solo espacios en blanco?
-                  </div>
-                }
-              }
-            </div>
-            <!-- Campo Password-->
-            <div class="form-floating">
-              <input type="password" formControlName="password" class="form-control" id="password"
-                     placeholder="password">
-              <label for="password">🔒 Password</label>
-              @if (password.invalid && (password.dirty || password.touched)) {
-                <!-- Alerta para 'required' -->
-                @if (password.errors?.['required']) {
-                  <div class="alert alert-danger" role="alert">
-                    ¡Debes indicar una contraseña!
-                  </div>
-                }   <!-- Alerta para 'minLength' -->
-                @if (password.errors?.['minlength']) {
-                  <div class="alert alert-warning" role="alert">
-                    ¡La contraseña debe tener al menos 8 caracteres!
-                  </div>
-                }
-                <!-- Alerta para 'maxLength' -->
-                @if (password.errors?.['maxlength']) {
-                  <div class="alert alert-warning" role="alert">
-                    ¡No superes los 20 caracteres!
-                  </div>
-                }
-                <!-- Alerta para 'notOnlyWhiteSpace' -->
-                @if (password.errors?.['notOnlyWhiteSpace']) {
-                  <div class="alert alert-danger" role="alert">
-                    ¿Estás seguro de que tu password tiene solo espacios en blanco?
-                  </div>
-                }
-              }
-            </div>
-            <!-- Botón de Enviar -->
-            <div class="btn-group mt-3">
-              <button type="submit" class="btn btn-lg btn-m botonEntrar">Crear cuenta</button>
-            </div>
-          </form>
-          <!-- Fin del Formulario -->
+      <!-- Formulario-->
+      <form [formGroup]="formUserLogin" (ngSubmit)="crearModificar()">
+        <!-- Campo Nombre-->
+        <div class="form-floating">
+          <input type="nombre" formControlName="nombre" class="form-control" id="nombre" placeholder="nombre">
+          <label for="nombre">👤 Nombre</label>
+          <!--Validación-->
+          @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
+            <!-- Alerta para 'required' -->
+            @if (nombre.errors?.['required']) {
+              <div class="alert alert-danger" role="alert">
+                ¡Debes indicar un nombre!
+              </div>
+            }
+            <!-- Alerta para 'maxLength' -->
+            @if (nombre.errors?.['maxlength']) {
+              <div class="alert alert-warning" role="alert">
+                ¡No superes los 50 caracteres!
+              </div>
+            }
+            <!-- Alerta para 'minLength' -->
+            @if (nombre.errors?.['minlength']) {
+              <div class="alert alert-warning" role="alert">
+                ¡Escribe tu nombre completo!
+              </div>
+            }
+            <!-- Alerta para '@nombre' -->
+            @if (nombre.errors?.['nombre']) {
+              <div class="alert alert-warning" role="alert">
+                ¡¿Estas seguro? Eso no parece un nombre!
+              </div>
+            }
+            <!-- Alerta para 'notOnlyWhiteSpace' -->
+            @if (nombre.errors?.['notOnlyWhiteSpace']) {
+              <div class="alert alert-danger" role="alert">
+                ¿Estás seguro de que tu nombre tiene solo espacios en blanco?
+              </div>
+            }
+          }
         </div>
-        <div class="container mt-5">
-          <button type="button" class="btn textVistaCSS botonCSS" routerLink="/loginUser">¿Ya estas registrado?</button>
+        <!-- Campo Email-->
+        <div class="form-floating">
+          <input type="email" formControlName="email" class="form-control" id="email" placeholder="email">
+          <label for="email">📧 Email</label>
+          <!--Validación-->
+          @if (email.invalid && (email.dirty || email.touched)) {
+            <!-- Alerta para 'required' -->
+            @if (email.errors?.['required']) {
+              <div class="alert alert-danger" role="alert">
+                ¡Debes indicar un email!
+              </div>
+            }
+            <!-- Alerta para 'maxLength' -->
+            @if (email.errors?.['maxlength']) {
+              <div class="alert alert-warning" role="alert">
+                ¡No superes los 50 caracteres!
+              </div>
+            }
+            <!-- Alerta para 'minLength' -->
+            @if (email.errors?.['minlength']) {
+              <div class="alert alert-warning" role="alert">
+                ¡Escribe tu correo completo!
+              </div>
+            }
+            <!-- Alerta para '@correo' -->
+            @if (email.errors?.['email']) {
+              <div class="alert alert-warning" role="alert">
+                ¡¿Estas seguro? Eso no parece un correo!
+              </div>
+            }
+            <!-- Alerta para 'notOnlyWhiteSpace' -->
+            @if (email.errors?.['notOnlyWhiteSpace']) {
+              <div class="alert alert-danger" role="alert">
+                ¿Estás seguro de que tu email tiene solo espacios en blanco?
+              </div>
+            }
+          }
+        </div>
+        <!-- Campo Password-->
+        <div class="form-floating">
+          <input type="password" formControlName="password" class="form-control" id="password"
+                 placeholder="password">
+          <label for="password">🔒 Password</label>
+          @if (password.invalid && (password.dirty || password.touched)) {
+            <!-- Alerta para 'required' -->
+            @if (password.errors?.['required']) {
+              <div class="alert alert-danger" role="alert">
+                ¡Debes indicar una contraseña!
+              </div>
+            }   <!-- Alerta para 'minLength' -->
+            @if (password.errors?.['minlength']) {
+              <div class="alert alert-warning" role="alert">
+                ¡La contraseña debe tener al menos 8 caracteres!
+              </div>
+            }
+            <!-- Alerta para 'maxLength' -->
+            @if (password.errors?.['maxlength']) {
+              <div class="alert alert-warning" role="alert">
+                ¡No superes los 20 caracteres!
+              </div>
+            }
+            <!-- Alerta para 'notOnlyWhiteSpace' -->
+            @if (password.errors?.['notOnlyWhiteSpace']) {
+              <div class="alert alert-danger" role="alert">
+                ¿Estás seguro de que tu password tiene solo espacios en blanco?
+              </div>
+            }
+          }
+        </div>
+        <!-- Botón de Enviar -->
+        <div class="btn-group mt-3">
+          <button type="submit" class="btn btn-lg btn-m botonEntrar">Crear cuenta</button>
+        </div>
+      </form>
+      <!-- Fin del Formulario -->
+    </div>
+    <div class="container mt-5">
+      <button type="button" class="btn textVistaCSS botonCSS" routerLink="/loginUser">¿Ya estas registrado?</button>
+    </div>
+  </div>
+  <!-- Toast centrado y dinámico -->
+  <div class="toast-container position-fixed top-50 start-50 translate-middle p-3" *ngIf="mostrarToast">
+    <div class="toast align-items-center border-0 show" [ngClass]="colorToast" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">
+          {{ iconoToast }} {{ mensajeToast }}
         </div>
       </div>
     </div>
+  </div>
+</div>
 
 
 

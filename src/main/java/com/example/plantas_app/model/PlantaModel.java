@@ -25,6 +25,10 @@ public class PlantaModel {
   private String ubicacion;
   private String tipoPlanta;
   private String notas;
+  private String rutaImagen;
+  @Transient
+  private String imagenBase64; // solo para transporte, no se guarda en DB
+
 
   @ManyToOne
   @JoinColumn(name = "usuario_id", nullable = false)

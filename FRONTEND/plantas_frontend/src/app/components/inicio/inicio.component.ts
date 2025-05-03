@@ -15,7 +15,7 @@ import {faRightFromBracket, faTrashAlt, faUser} from '@fortawesome/free-solid-sv
   imports: [
     ReactiveFormsModule,
     RouterLink,
-    SlicePipe,
+
     FaIconComponent,
     NgClass,
     NgIf,
@@ -129,6 +129,7 @@ export class InicioComponent implements OnInit {
       error: err => console.log(err),
       complete: () => {
         console.log("Usuario Modificado");
+
 
       }
     })

@@ -21,6 +21,12 @@ public class UserController {
 
   @PostMapping("/new")
   public ResponseEntity<Map<String, Object>> newUser(@RequestBody UsuarioModel usuario) {
+    if (usuarioService.findByEmail(usuario.getEmail()).isPresent()) {
+      return ResponseEntity.status(409).body(Map.of(
+        "success", false,
+        "message", "El email ya está en uso"
+      ));
+    }
     Map<String, Object> response = new HashMap<>();
     UsuarioModel newUser = usuarioService.crearUsuario(usuario);
 
