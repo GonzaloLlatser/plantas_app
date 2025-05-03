@@ -19,20 +19,20 @@ import java.util.UUID;
 @Service
 public class PlantaService {
 
+  // Repositorios
   private final PlantaRepository plantaRepository;
   private final UsuarioRepository usuarioRepository;
 
+  // Constructor
   public PlantaService(PlantaRepository plantaRepository, UsuarioRepository usuarioRepository) {
     this.plantaRepository = plantaRepository;
     this.usuarioRepository = usuarioRepository;
   }
 
+  // Metodo -> agregarPlanta
   public PlantaModel agregarPlanta(PlantaModel planta) {
     Long usuarioId = planta.getUsuario().getId();
-
-    UsuarioModel usuario = usuarioRepository.findById(usuarioId)
-      .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
+    UsuarioModel usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     // Imagen Base64 -> archivo físico
     if (planta.getImagenBase64() != null && !planta.getImagenBase64().isEmpty()) {
       try {
@@ -45,21 +45,21 @@ public class PlantaService {
         throw new RuntimeException("Error al guardar la imagen");
       }
     }
-
     planta.setUsuario(usuario);
-
     return plantaRepository.save(planta);
   }
 
-
+  // Metodo -> Obtener Plantas del Usuario
   public List<PlantaModel> obtenerPlantasPorUsuario(Long usuarioId) {
     return plantaRepository.findByUsuarioId(usuarioId);
   }
 
+  // Metodo -> Obtener Planta por ID
   public Optional<PlantaModel> obtenerPlantaPorId(Long id) {
     return plantaRepository.findById(id);
   }
 
+  // Metodo -> Eliminar Planta
   public boolean eliminarPlanta(Long id) {
     if (plantaRepository.existsById(id)) {
       plantaRepository.deleteById(id);
@@ -68,10 +68,9 @@ public class PlantaService {
     return false;
   }
 
+  // Metodo -> actualizar Planta
   public boolean actualizarPlanta(Long id, PlantaModel plantaDetalles) {
-
     return plantaRepository.findById(id).map(planta -> {
-
       // Verificar si existe una imagen anterior y eliminarla
       if (planta.getRutaImagen() != null) {
         String rutaAnterior = "C:/xampp/htdocs" + planta.getRutaImagen();
@@ -81,7 +80,6 @@ public class PlantaService {
           log.error("No se pudo eliminar la imagen anterior: " + e.getMessage());
         }
       }
-
       try {
         if (plantaDetalles.getImagenBase64() != null && !plantaDetalles.getImagenBase64().isEmpty()) {
           // Decodificar la imagen en Base64
@@ -113,12 +111,12 @@ public class PlantaService {
       planta.setNotas(plantaDetalles.getNotas());
       //planta.setUsuario(plantaDetalles.getUsuario());
 
-
       plantaRepository.save(planta);
       return true;
     }).orElse(false);
   }
 
+  // Metodo -> obtener todas las plantas
   public List<PlantaModel> obtenerTodas() {
     return plantaRepository.findAll();
   }

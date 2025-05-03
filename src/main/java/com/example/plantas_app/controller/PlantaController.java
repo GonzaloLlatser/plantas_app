@@ -19,10 +19,11 @@ public class PlantaController {
   public PlantaController(PlantaService plantaService) {
     this.plantaService = plantaService;
   }
+
   @GetMapping()
   public ResponseEntity<List<PlantaModel>> getAllPlantas() {
     Map<String, Object> response = new HashMap<>();
-    List<PlantaModel> plantas= plantaService.obtenerTodas();
+    List<PlantaModel> plantas = plantaService.obtenerTodas();
     response.put("plantas", plantas);
     return ResponseEntity.ok().body(plantas);
   }
@@ -48,43 +49,25 @@ public class PlantaController {
     Map<String, Object> response = new HashMap<>();
     Optional<PlantaModel> planta = plantaService.obtenerPlantaPorId(id);
     if (planta.isPresent()) {
-      return ResponseEntity.ok(Map.of(
-        "success", true,
-        "planta", planta.get()
-      ));
+      return ResponseEntity.ok(Map.of("success", true, "planta", planta.get()));
     }
-    return ResponseEntity.status(404).body(Map.of(
-      "success", false,
-      "message", "Planta no encontrada"
-    ));
+    return ResponseEntity.status(404).body(Map.of("success", false, "message", "Planta no encontrada"));
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Map<String, Object>> eliminarPlanta(@PathVariable Long id) {
     if (plantaService.eliminarPlanta(id)) {
-      return ResponseEntity.ok(Map.of(
-        "success", true,
-        "message", "Planta eliminada correctamente"
-      ));
+      return ResponseEntity.ok(Map.of("success", true, "message", "Planta eliminada correctamente"));
     }
-    return ResponseEntity.status(404).body(Map.of(
-      "success", false,
-      "message", "Planta no encontrada"
-    ));
+    return ResponseEntity.status(404).body(Map.of("success", false, "message", "Planta no encontrada"));
   }
 
   @PutMapping("modificar/{id}")
   public ResponseEntity<Map<String, Object>> actualizarPlanta(@PathVariable Long id, @RequestBody PlantaModel plantaDetalles) {
     if (plantaService.actualizarPlanta(id, plantaDetalles)) {
-      return ResponseEntity.ok(Map.of(
-        "success", true,
-        "message", "Planta actualizada correctamente"
-      ));
+      return ResponseEntity.ok(Map.of("success", true, "message", "Planta actualizada correctamente"));
     }
-    return ResponseEntity.status(404).body(Map.of(
-      "success", false,
-      "message", "Planta no encontrada"
-    ));
+    return ResponseEntity.status(404).body(Map.of("success", false, "message", "Planta no encontrada"));
   }
 }
 

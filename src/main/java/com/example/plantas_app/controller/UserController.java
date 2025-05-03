@@ -22,10 +22,7 @@ public class UserController {
   @PostMapping("/new")
   public ResponseEntity<Map<String, Object>> newUser(@RequestBody UsuarioModel usuario) {
     if (usuarioService.findByEmail(usuario.getEmail()).isPresent()) {
-      return ResponseEntity.status(409).body(Map.of(
-        "success", false,
-        "message", "El email ya está en uso"
-      ));
+      return ResponseEntity.status(409).body(Map.of("success", false, "message", "El email ya está en uso"));
     }
     Map<String, Object> response = new HashMap<>();
     UsuarioModel newUser = usuarioService.crearUsuario(usuario);
@@ -41,46 +38,24 @@ public class UserController {
     Map<String, Object> response = new HashMap<>();
     Optional<UsuarioModel> user = usuarioService.find(id);
     if (user.isPresent()) {
-      return ResponseEntity.ok(Map.of(
-        "success", true,
-        "user", user.get()
-      ));
+      return ResponseEntity.ok(Map.of("success", true, "user", user.get()));
     }
-    return ResponseEntity.status(404).body(Map.of(
-      "success", false,
-      "message", "Usuario no encontrado"
-    ));
+    return ResponseEntity.status(404).body(Map.of("success", false, "message", "Usuario no encontrado"));
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable Long id) {
     if (usuarioService.eliminarUsuario(id)) {
-      return ResponseEntity.ok(Map.of(
-        "success", true,
-        "message", "Usuario eliminado correctamente"
-      ));
+      return ResponseEntity.ok(Map.of("success", true, "message", "Usuario eliminado correctamente"));
     }
-    return ResponseEntity.status(404).body(Map.of(
-      "success", false,
-      "message", "Usuario no encontrado"
-    ));
+    return ResponseEntity.status(404).body(Map.of("success", false, "message", "Usuario no encontrado"));
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<Map<String, Object>> updateUser(@PathVariable Long id, @RequestBody UsuarioModel usuario) {
     if (usuarioService.modificarUsuario(usuario, id)) {
-      return ResponseEntity.ok(Map.of(
-        "success", true,
-        "message", "Usuario modificado correctamente"
-      ));
+      return ResponseEntity.ok(Map.of("success", true, "message", "Usuario modificado correctamente"));
     }
-    return ResponseEntity.status(404).body(Map.of(
-      "success", false,
-      "message", "Usuario no encontrado o sin modificar"
-    ));
+    return ResponseEntity.status(404).body(Map.of("success", false, "message", "Usuario no encontrado o sin modificar"));
   }
 }
-
-
-
-

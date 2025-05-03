@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Service
 public class UsuarioService {
-
+  // Repositorio de usuarios
   private final UsuarioRepository usuarioRepository;
 
   // Constructor con inyección de dependencias
@@ -16,22 +16,22 @@ public class UsuarioService {
     this.usuarioRepository = usuarioRepository;
   }
 
-  // Buscar usuario por email
+  // Metodo -> Buscar todos los usuarios
   public Optional<UsuarioModel> findByEmail(String email) {
     return usuarioRepository.findByEmail(email);
   }
 
-  // Crear usuario
+  // Metodo -> Crear usuario
   public UsuarioModel crearUsuario(UsuarioModel usuario) {
     return usuarioRepository.save(usuario);
   }
 
-  // Buscar usuario por ID
+  // Metodo -> Buscar usuario por id
   public Optional<UsuarioModel> find(Long id) {
     return usuarioRepository.findById(id);
   }
 
-  // Eliminar usuario
+  // Metodo -> Eliminar usuario
   public boolean eliminarUsuario(Long id) {
     if (!usuarioRepository.existsById(id)) {
       return false;
@@ -40,7 +40,7 @@ public class UsuarioService {
     return true;
   }
 
-  // Modificar usuario
+  // Metodo -> Modificar usuario
   public boolean modificarUsuario(UsuarioModel usuario, Long id) {
     if (!usuarioRepository.existsById(id)) {
       return false;
@@ -50,4 +50,3 @@ public class UsuarioService {
     return true;
   }
 }
-
