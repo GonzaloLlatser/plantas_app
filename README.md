@@ -6,7 +6,6 @@ A lo largo del desarrollo, se implementaron funcionalidades como gestión de pla
 y la utilización de prácticas avanzadas como el uso de relaciones entre tablas, lo que permitió afianzar y aplicar los conocimientos adquiridos 
 en el proceso de formación en el centro de estudios **[Solvam](https://www.solvam.es)**.
 
----
 ## ✏️ Diseño previo
 
 Este fue el diseño inicial o boceto conceptual de la aplicación, creado antes de comenzar con el desarrollo:
@@ -19,21 +18,19 @@ Este fue el diseño inicial o boceto conceptual de la aplicación, creado antes 
 
 ### 📌 Frontend
 
-<img alt="Angular" src="https://img.shields.io/badge/Angular-red?style=for-the-badge&logo=angular&logoColor=white"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"><img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"><img alt="ng-bootstrap" src="https://img.shields.io/badge/ng--bootstrap-6DB33F?style=for-the-badge&logo=bootstrap&logoColor=white"><img alt="RxJS" src="https://img.shields.io/badge/RxJS-B7178C?style=for-the-badge&logo=reactivex&logoColor=white"><img alt="HTML5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"><img alt="CSS3" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+<img alt="Angular" src="https://img.shields.io/badge/Angular-red?style=for-the-badge&logo=angular&logoColor=white"> <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"> <img alt="ng-bootstrap" src="https://img.shields.io/badge/ng--bootstrap-6DB33F?style=for-the-badge&logo=bootstrap&logoColor=white"> <img alt="RxJS" src="https://img.shields.io/badge/RxJS-B7178C?style=for-the-badge&logo=reactivex&logoColor=white"> <img alt="HTML5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img alt="CSS3" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 
 ### ⚙️ Backend
 
-<img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"><img alt="Spring Data JPA" src="https://img.shields.io/badge/Spring%20Data%20JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><img alt="Hibernate" src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white"><img alt="Spring Validation" src="https://img.shields.io/badge/Spring%20Validation-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><img alt="Lombok" src="https://img.shields.io/badge/Lombok-EA4949?style=for-the-badge&logo=java&logoColor=white">
+<img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> <img alt="Spring Data JPA" src="https://img.shields.io/badge/Spring%20Data%20JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img alt="Hibernate" src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white"> <img alt="Spring Validation" src="https://img.shields.io/badge/Spring%20Validation-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img alt="Lombok" src="https://img.shields.io/badge/Lombok-EA4949?style=for-the-badge&logo=java&logoColor=white">
 
 ### 💾 Base de datos
 
-<img alt="MySQL" src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><img alt="XAMPP" src="https://img.shields.io/badge/XAMPP-FB7A24?style=for-the-badge&logo=xampp&logoColor=white"><img alt="phpMyAdmin" src="https://img.shields.io/badge/phpMyAdmin-6C78AF?style=for-the-badge&logo=php&logoColor=white">
+<img alt="MySQL" src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img alt="XAMPP" src="https://img.shields.io/badge/XAMPP-FB7A24?style=for-the-badge&logo=xampp&logoColor=white"> <img alt="phpMyAdmin" src="https://img.shields.io/badge/phpMyAdmin-6C78AF?style=for-the-badge&logo=php&logoColor=white">
 
 ### 🛠️ Otros
 
-<img alt="Postman" src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"><img alt="IntelliJ IDEA" src="https://img.shields.io/badge/IntelliJ%20IDEA-000000?style=for-the-badge&logo=intellijidea&logoColor=white"><img alt="VS Code" src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"><img alt="Git" src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white">
-
----
+<img alt="Postman" src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img alt="IntelliJ IDEA" src="https://img.shields.io/badge/IntelliJ%20IDEA-000000?style=for-the-badge&logo=intellijidea&logoColor=white"> <img alt="VS Code" src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"> <img alt="Git" src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img alt="GitHub" src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white">
 
 ## 🚀 Requisitos para ejecutar el proyecto
 
@@ -71,8 +68,6 @@ spring.jpa.show-sql=true
 
 ``` ng serve ```
 
----
-
 ## 🧪 Funcionalidades implementadas
 
 - **CRUD completo** de entidad Planta
@@ -97,7 +92,6 @@ plantas_app/
 ├── recursos/ (MySQL)
 └── README.md
 ```
-
 ## 📸 Capturas de pantalla
 
 <p align="center">
@@ -115,8 +109,6 @@ plantas_app/
 2. Seguir los pasos de instalación para backend y frontend.
 3. ¡Listo! Ya puedes probarlo o contribuir al proyecto.
 
----
-
 ## 🔮 Futuras mejoras o implementaciones
 
 - Incorporar la autenticación con **roles de usuario**.
@@ -124,7 +116,6 @@ plantas_app/
 - Permitir a los usuarios marcar plantas como **favoritas**.
 - Implementación de **seguridad con JWT**.
 - Incorporar contenido adicional, como **artículos o consejos** sobre el cuidado de plantas.
----
 
 ## 🙏 Agradecimientos
 
@@ -139,8 +130,3 @@ Fue un verdadero desafío, lleno de investigación, pruebas, errores, correccion
 tiempo y energía mental**. Cada línea de código representa horas de compromiso, aprendizaje y superación personal.
 
 Gracias por tomarte el tiempo de revisar este proyecto. ¡Espero que te guste y no dudes en dejarme tu opinión!
-
----
-
-
-  
